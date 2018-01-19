@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+     <% name = current_user.manager? ? "Nurses" : "Managers" %>
+     <h1><%="#{name} List"%></h1>
+    </div>
+    <div class="col-md-2 ">
+      <% name = current_user.manager? ? "Nurse" : "Manager" %>
+      <%= link_to "New #{name} Account", new_hospital_user_path, class: "btn btn-success" %>
+        
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-stripped">
+        <thead>  
+          <tr>
+            <th>Id</th>
+            <th>Hospital Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Action</th>
+            
+          </tr>
+        </thead> 
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= user.hospital_id %></td> 
+              <td><%= user.first_name %></td> 
+              <td><%= user.last_name %></td>
+              <td><%= user.email %></td>      
+              <td ><%= link_to 'Edit', edit_hospital_user_path(user.hospital ,user), class: "btn btn-info" %>
+              <%= link_to 'Show',  hospital_user_path(user.hospital ,user), class: "btn btn-primary" %>
+              <%= link_to 'Destroy', hospital_user_path(user.hospital ,user),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>      
+    </div>    
+  </div>
+</div>
+

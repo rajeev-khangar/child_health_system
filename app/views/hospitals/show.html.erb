@@ -1,0 +1,31 @@
+<div class="container i-box">
+  <div class="row">
+    <div class="col-md-7 col-md-offset-3">
+      <h1>Details of Particular Hospital</h1>
+    </div>
+    <div class="col-md-2">
+      <%= link_to "Hospital List",  hospitals_path, class: "btn btn-success" %>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <table class="table table-stripped">
+        <tbody>
+          <tr>
+            <th>Hospital Id</th>
+            <td><%= @hospital.id %></td>
+          </tr>
+          <tr> 
+            <th>Hospital Name</th>
+            <td><%= @hospital.name %></td>
+          </tr>
+          <tr>
+            <th>subdomain</th>
+            <td><%= @hospital.subdomain %></td>
+          </tr>
+        </tbody>
+      </table>         
+    </div>    
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container i-box">
+  <div class="row">
+  <div class="col-md-2  col-md-offset-12 ">
+  <%= link_to "New Hospital", new_hospital_path, class: "btn btn-success" %>
+  </div>
+  <div class="col-md-8 ">
+    <h1>Hospital List</h1>
+  <div class="row">
+    <div class="col-md-12  col-md-offset-1">
+      <table class="table table-stripped">
+        <thead>  
+          <tr>
+            <th> ID</th>
+            <th> Hospital Name</th>
+            <th> Subdomain</th> 
+            <th> Action</th>
+            <th> Baby Record </th>  
+          </tr>
+        </thead> 
+        <tbody>
+          <% @hospitals.each do |hospital| %>
+            <tr>
+              <td><%= hospital.id %></td> 
+              <td><%= hospital.name %></td>
+              <td><%= hospital.subdomain %></td>        
+              <td ><%= link_to 'Edit', edit_hospital_path(hospital), class: "btn btn-info" %>
+              <%= link_to 'Show', hospital_path(hospital), class: "btn btn-primary" %>
+              <%= link_to 'Destroy', hospital_path(hospital),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+              <%= link_to "users", hospital_users_path(hospital), class: "btn btn-warning"%></td>
+              <td><%= link_to "Babies", hospital_healths_path(hospital), class: "btn btn-info" %></td> 
+            </tr>
+          <% end %>
+        </tbody>
+      </table>      
+    </div>    
+  </div>
+</div>
+

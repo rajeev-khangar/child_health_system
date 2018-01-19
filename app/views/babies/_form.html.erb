@@ -1,0 +1,69 @@
+<%= bootstrap_form_for [@hospital, @user, @baby], local: true do |form| %>
+  <div class="row">  
+    <div class="col-sm-4">
+      <%= form.text_field :first_name,  placeholder:"Enter First Name",  icon: "user" %>
+    </div>
+    <div class="col-sm-4">
+      <%= form.text_field :middle_name, placeholder: "Enter Middle Name",  icon: "user" %>
+    </div>
+    <div class="col-sm-4">
+      <%= form.text_field :last_name, placeholder: "Enter last Name",  icon: "user" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <%= form.file_field  :avatar %>
+    </div>
+    <div class="col-sm-4">
+      <br>
+      <%= form.form_group :sex, label: { text: "Gender" }  do %>  
+        <%= form.radio_button :sex, "male", label: "Male", checked: true, inline: true %>
+        <%= form.radio_button :sex, "female", label: "Female", inline: true %>
+      <% end %>
+    </div>
+   
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-4">
+     <%= form.text_field :father_id, placeholder: "Enter Father Id"%>
+    </div>
+    <div class="col-sm-4">
+      <%= form.text_field :mother_id,  placeholder: "Enter Mother Id"%>
+    </div>
+     <div class="col-sm-4">
+      <%= form.date_field :date_of_birth, value: @baby.try(:date_of_birth) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <%= form.text_field :weight,  placeholder: "Enter weight"%>
+    </div>
+    <div class="col-sm-4">
+      <%= form.text_field :height,  placeholder: "Enter height"%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <%= form.text_field :physical_address, placeholder: "Enter Address" %>
+    </div>
+  </div>
+  
+  <div class="row"> 
+    <div class="col-sm-12">
+      <%= form.text_field :place_of_birth, placeholder: "Enter Place Of birth" %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-4">
+      <%= form.submit "submit", class: "btn btn-primary" %>
+    </div>
+    <div class="col-sm-8">
+      <%= link_to 'Back',  hospital_user_babies_path, class: "pull_right btn btn-info" %>
+    </div>
+  </div>
+<% end  %> 

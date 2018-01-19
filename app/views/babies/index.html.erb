@@ -1,0 +1,52 @@
+<div class="container i-box">
+  <div class="row">
+    <div class="col-md-10">
+      <h1>Baby List</h1>
+    </div>
+    <div class="col-md-2">
+      <%= link_to "New Baby Account", new_hospital_user_baby_path, class: "btn btn-success" %>
+        
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-stripped">
+        <thead>  
+          <tr>
+            <th>Baby Id</th>
+            <th>First Name</th>
+            <th>Date Of Birth</th>
+            <th>Place Of Birth</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Father Id</th>
+            <th>Mother Id</th>
+            <th>Hospital Id</th>
+            <th>Action</th>
+            
+          </tr>
+        </thead> 
+        <tbody>
+          <% @babies.each do |baby| %>
+            <tr>
+              <td><%= baby.id %></td> 
+              <td><%= baby.first_name %></td> 
+              <td><%= baby.date_of_birth %></td>
+              <td><%= baby.place_of_birth %></td> 
+              <td><%= baby.sex %></td>
+              <td><%= baby.age %></td>
+              <td><%= baby.father_id %></td>
+              <td><%= baby.mother_id %></td>
+              <td><%= baby.hospital_id %></td>    
+              <td ><%= link_to 'Edit',  edit_hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-info" %>
+              <%= link_to 'Show',  hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-primary" %>
+              <%= link_to 'Destroy', hospital_user_baby_path(@hospital, @user, baby),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>      
+    </div>    
+  </div>
+</div>

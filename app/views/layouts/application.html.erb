@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChildHealthSystem</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Child Health System</a>
+        </div>
+        <ul class="nav navbar-nav pull-right ">
+          <% if current_user %>
+            <% if current_user.role == "admin" %>
+              <li><%= link_to 'Hospital', hospitals_path %></li>
+            <% elsif current_user.role == "manager"%>     
+              <li><%= link_to 'Nurses', hospital_users_path(current_user.hospital) %></li>
+            <% else current_user.role == "nurse"%>     
+              <li><%= link_to 'Baby Account', hospital_user_babies_path(current_user.hospital, current_user) %></li>
+            <% end %>
+            <li><%= link_to 'SignOut',  destroy_user_session_path,{method: :delete} %></li>
+          <% else %>
+            <li><%= link_to 'Login',  new_user_session_path, class: "glyphicon glyphicon-log-in" %></li>
+            <li><%= link_to 'SignUp', new_user_registration_path, class: "glyphicon glyphicon-user"  %></li>
+          <% end %> 
+        </ul>
+      </div>
+    </nav>
+    <%= render partial: "shared/flash_messages" %>
+    <%= yield %>
+  </body>
+</html>
