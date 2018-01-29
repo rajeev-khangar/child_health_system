@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   root 'welcomes#new'
-  
+  resources :managers
   resources :hospitals do
     resources :users do
     	resources :babies

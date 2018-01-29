@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+	class UsersController < ApplicationController
   before_action :set_hospital
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   
@@ -42,16 +42,21 @@ class UsersController < ApplicationController
 	end
 
 	def update
-      flash[:alert] = "Update Successfully." if @user.update(user_params)
-      redirect_to hospital_users_path
+		if @user.update(user_params)
+	      flash[:success] = "Update Successfully." 
+	      redirect_to hospital_users_path
+	    else
+	  	  flash[:alert] = @user.errors.full_messages.join(' ,')
+	  	  render 'edit'
+	    end
 	end
 
 	def destroy
-      flash[:alert] = "Destroy Successfully." if @user.destroy
-      redirect_to hospital_users_path
-    end
+    flash[:alert] = "Destroy Successfully." if @user.destroy
+    redirect_to hospital_users_path
+  end
 
-    private
+  private
     def set_user
       @user = @hospital.users.find(params[:id])
       authorize @user
@@ -59,11 +64,15 @@ class UsersController < ApplicationController
 
 
     def set_hospital
-      @hospital = Hospital.find(params[:hospital_id])
+    	@hospital = if current_user.admin?
+        current_user.hospitals.find(params[:hospital_id])
+      else
+      	Hospital.find(params[:hospital_id])
+      end
     end
   
  
     def user_params
-    params.require(:user).permit(:hospital_id, :first_name, :last_name, :email, :password)
+      params.require(:user).permit(:hospital_id, :first_name, :last_name, :email, :password)
     end
 end

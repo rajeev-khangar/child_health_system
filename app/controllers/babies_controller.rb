@@ -32,15 +32,20 @@ class BabiesController < ApplicationController
 	end
 
 	def update
-    flash[:alert] = "Update Successfully." if @baby.update(baby_params)
-    redirect_to  hospital_user_babies_path
+		if @baby.update(baby_params)
+          flash[:success] = "Update Successfully." 
+          redirect_to  hospital_user_babies_path
+        else
+	  	  flash[:alert] = @baby.errors.full_messages.join(' ,')
+	  	  render 'edit'
+	  	end
 	end
 
 	def destroy
     flash[:alert] = "Destroy Successfully." if @baby.destroy
     redirect_to  hospital_user_babies_path
  
-  end
+    end
     private
     def set_baby
       @baby = @user.babies.find(params[:id])
@@ -50,6 +55,8 @@ class BabiesController < ApplicationController
     def set_nurse
       @hospital = Hospital.find(params[:hospital_id])
       @user = @hospital.users.find(params[:user_id])
+      @fathers = Father.all.collect{|f| [f.first_name, f.id]}
+      @mothers = Mother.all.collect{|m| [m.first_name, m.id]}
     end
   
     def baby_params

@@ -1,4 +1,4 @@
-<div class="container i-box">
+<div class="container main-center">
   <div class="row">
     <div class="col-md-7 col-md-offset-3">
       <h1>Sign Up</h1>
@@ -8,13 +8,17 @@
     <div class="col-md-6 col-md-offset-3">
       <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
-        <%= f.text_field :first_name, icon: "user" %>
-        <%= f.text_field :last_name, icon: "user" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        <%= f.password_field :password, autocomplete: "off" %>
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
-        <%= f.submit "Sign up" %>
-      <% end %>     
+        <%= f.text_field :first_name, icon: "user", placeholder: "User first name" %>
+        <%= f.text_field :last_name, icon: "user", placeholder: "User last name" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address" %>
+        <%= f.password_field :password, autocomplete: "off", placeholder: "password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm password" %>
+       <div class="row">
+         <div class="col-lg-12 ">
+        <%= f.submit "REGISTER", class: " btn btn-primary btn-lg btn-block" %>
+        <% end %> 
+       </div>    
+        </div>    
     </div>    
   </div>
 </div>

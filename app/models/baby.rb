@@ -3,8 +3,8 @@ class Baby < ApplicationRecord
 
 	belongs_to :hospital
     belongs_to :user,  optional: true
-	has_one :mother
-	has_one :father
+	belongs_to :mother
+	belongs_to :father
 
 	validates :first_name, presence: true
 	validates :last_name, presence: true

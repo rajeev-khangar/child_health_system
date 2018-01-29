@@ -1,0 +1,48 @@
+<div class="container">
+<div class="row">
+  <div class="col-md-2 col-md-offset-12">
+    <%= link_to "New manager", new_manager_path, class: "btn btn-success" %>
+  </div>
+   </div>
+   <div class="container index-container">
+      <h1>Manager List</h1>
+      <br>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-stripped">
+        <thead>  
+          <tr>
+            <th>Id</th>
+            <th>Hospital Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Action</th>
+            
+          </tr>
+        </thead> 
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= user.hospital_id %></td> 
+              <td><%= user.first_name %></td> 
+              <td><%= user.last_name %></td>
+              <td><%= user.email %></td>      
+              <td ><%= link_to 'Edit',  edit_manager_path(user), class: "btn btn-default glyphicon glyphicon-edit" %>
+              <%= link_to'Show',   manager_path(user), class: "btn btn-default glyphicon glyphicon-eye-open" %>
+              <%= link_to 'Destroy',  manager_path(user),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>      
+    </div>    
+  </div>
+</div>
+</div>
+
+
+
+

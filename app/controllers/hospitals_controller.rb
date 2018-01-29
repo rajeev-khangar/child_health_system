@@ -26,7 +26,7 @@ class HospitalsController < ApplicationController
     if @hospital.save
       redirect_to hospitals_path
     else
-       render 'new'
+      render 'new'
     end
   end
 

@@ -1,4 +1,15 @@
-<%= bootstrap_form_for [@hospital, @user, @baby], local: true do |form| %>
+<div class="container">
+  <div class="row">
+   <div class="col-md-2 col-md-offset-12">
+      <%= link_to 'Back',  hospital_user_babies_path, class: "pull-left btn btn-info" %>
+    </div>
+  </div>
+</div>
+
+
+
+ <%= bootstrap_form_for [@hospital, @user, @baby], local: true do |form| %>
+    
   <div class="row">  
     <div class="col-sm-4">
       <%= form.text_field :first_name,  placeholder:"Enter First Name",  icon: "user" %>
@@ -12,10 +23,10 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-md-4">
       <%= form.file_field  :avatar %>
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-6">
       <br>
       <%= form.form_group :sex, label: { text: "Gender" }  do %>  
         <%= form.radio_button :sex, "male", label: "Male", checked: true, inline: true %>
@@ -27,10 +38,10 @@
   
   <div class="row">
     <div class="col-sm-4">
-     <%= form.text_field :father_id, placeholder: "Enter Father Id"%>
+     <%= form.select :father_id, @fathers, :prompt => 'Choose father id' %>
     </div>
     <div class="col-sm-4">
-      <%= form.text_field :mother_id,  placeholder: "Enter Mother Id"%>
+      <%= form.select :mother_id, @mothers, :prompt => 'Choose mother id'  %>
     </div>
      <div class="col-sm-4">
       <%= form.date_field :date_of_birth, value: @baby.try(:date_of_birth) %>
@@ -59,11 +70,9 @@
   </div>
   
   <div class="row">
-    <div class="col-sm-4">
-      <%= form.submit "submit", class: "btn btn-primary" %>
+    <div class="col-md-12">
+      <%= form.submit "submit", class: "btn btn-lg btn-success" %>
     </div>
-    <div class="col-sm-8">
-      <%= link_to 'Back',  hospital_user_babies_path, class: "pull_right btn btn-info" %>
-    </div>
+   
   </div>
-<% end  %> 
+ <% end  %> 
