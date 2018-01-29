@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180120140022) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "babies", force: :cascade do |t|
     t.integer "mother_id"
     t.integer "father_id"
@@ -57,7 +60,7 @@ ActiveRecord::Schema.define(version: 20180120140022) do
     t.string "name"
     t.string "subdomain"
     t.string "creator_type"
-    t.integer "creator_id"
+    t.bigint "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creator_type", "creator_id"], name: "index_hospitals_on_creator_type_and_creator_id"

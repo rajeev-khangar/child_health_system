@@ -10,7 +10,4 @@ development: &common
 
 production:
   <<: *common
-  user: rails
   database: child_health_system_production
-  password: 
-  host: 
