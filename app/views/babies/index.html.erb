@@ -39,9 +39,9 @@
                 <td><%= baby.father_id %></td>
                 <td><%= baby.mother_id %></td>
                 <td><%= baby.hospital_id %></td>    
-                <td ><%= link_to 'Edit',  edit_hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-default glyphicon glyphicon-edit" %>
-                <%= link_to 'Show',  hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-default glyphicon glyphicon-eye-open" %>
-                <%= link_to 'Destroy', hospital_user_baby_path(@hospital, @user, baby),
+                <td ><%= link_to '',  edit_hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-default glyphicon glyphicon-edit" %>
+                <%= link_to '',  hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-default glyphicon glyphicon-eye-open" %>
+                <%= link_to '', hospital_user_baby_path(@hospital, @user, baby),
                 method: :delete,
                 data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash" %></td>
               </tr>

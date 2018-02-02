@@ -8,15 +8,17 @@
     </div>
   </div>
   <br>
-  <div class="row">
-    <div class="col-md-6 ">
-      <%= chartjs_line_chart(@data,{title: {display:true, position: "bottom", text: "Age in Month"}, scales: {xAxes: [{gridLines: {display:true}}], yAxes: [{scaleLabel: {display: true,labelString: 'Height in cm'},gridLines: {display:true}, ticks: {beginAtZero:true}}]}, maintainAspectRatio: false}) %>
-    </div> 
+  <div class="row index-container">
+    <div class="col-md-12 ">
+      <%= chartjs_line_chart(@data,{title: {display:true, position: "bottom", text: "Age in Month"}, scales: {xAxes: [{gridLines: {display:true}}], yAxes: [{scaleLabel: {display: true,labelString: 'Height in cm'},gridLines: {display:true}, ticks: {beginAtZero:true}}]}, maintainAspectRatio: false, height: 500}) %>
+    </div>
+   </div>   
+  <div class="row index-container">
+    <div class="col-md-12 ">
+      <%= chartjs_line_chart(@weight_data,{title: {display:true, position: "bottom", text: "Age in Month"}, scales: {xAxes: [{gridLines: {display:true}}], yAxes: [{scaleLabel: {display: true,labelString: 'Weight in ounce'},gridLines: {display:true}, ticks: {beginAtZero:true}}]}, maintainAspectRatio: false, height: 500}) %>
+    </div>
+   </div>         
+</div>
 
-    <div class="col-md-6 ">
-      <%= chartjs_line_chart(@weight_data,{title: {display:true, position: "bottom", text: "Age in Month"}, scales: {xAxes: [{gridLines: {display:true}}], yAxes: [{scaleLabel: {display: true,labelString: 'Weight in ounce'},gridLines: {display:true}, ticks: {beginAtZero:true}}]}, maintainAspectRatio: false}) %>
-    </div>       
-  </div>
- </div>
 
 

@@ -25,10 +25,10 @@
               <td><%= hospital.id %></td> 
               <td><%= hospital.name %></td>
               <td><%= hospital.subdomain %></td>        
-              <td ><%= link_to 'Edit', edit_hospital_path(hospital), class: "btn btn-info" %>
-              <%= link_to 'Show', hospital_path(hospital), class: "btn btn-primary" %>
-              <%= link_to 'Destroy', hospital_path(hospital),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
-              <td><%= link_to "Babies", hospital_healths_path(hospital), class: "btn btn-info" %></td> 
+              <td ><%= link_to '', edit_hospital_path(hospital), class: "btn btn-default glyphicon glyphicon-edit" %>
+              <%= link_to '', hospital_path(hospital), class: "btn btn-default glyphicon glyphicon-eye-open" %>
+              <%= link_to '', hospital_path(hospital),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash" %></td>
+              <td><%= link_to "Babies", hospital_healths_path(hospital), class: "btn btn-primary" %></td> 
             </tr>
           <% end %>
         </tbody>

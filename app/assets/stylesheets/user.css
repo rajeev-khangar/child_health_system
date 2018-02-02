@@ -57,13 +57,13 @@ body{
 }
 
 .index-container {
-
-    padding: 40px;
+    margin-top: 40px;
+    margin-right: 5px; 
+    height: 600px;
     width: 100% !important;
-    background-color:  #333333;
-    border-radius: 10px;
+    background-color:  #F0FFF0;
     font-family: roboto;
-    color: #F7F7F7;
+    color: #000000;
 
 }
 

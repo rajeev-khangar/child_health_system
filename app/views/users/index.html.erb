@@ -32,8 +32,8 @@
                 <td><%= user.first_name %></td> 
                 <td><%= user.last_name %></td>
                 <td><%= user.email %></td>      
-                <td ><%= link_to 'Edit',  edit_hospital_user_path(user.hospital ,user), class: "btn btn-info" %>
-                <%= link_to 'Show',  hospital_user_path(user.hospital ,user), class: "btn btn-primary" %>
+                <td ><%= link_to 'Edit',  edit_hospital_user_path(user.hospital ,user), class: "btn btn-default glyphicon glyphicon-edit" %>
+                <%= link_to 'Show',  hospital_user_path(user.hospital ,user), class: "btn btn-default glyphicon glyphicon-eye-open" %>
                 <%= link_to 'Destroy', hospital_user_path(user.hospital ,user),
                 method: :delete,
                 data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash" %></td>
