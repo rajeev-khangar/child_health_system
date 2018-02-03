@@ -44,7 +44,7 @@ class BabiesController < ApplicationController
     flash[:alert] = "Destroy Successfully." if @baby.destroy
     redirect_to  hospital_user_babies_path
   end
-   
+
   private
     def set_baby
       @baby = @user.babies.find(params[:id])

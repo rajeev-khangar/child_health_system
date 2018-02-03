@@ -58,7 +58,7 @@ class ManagersController < ApplicationController
     def load_hospitals
       @hospitals = current_user.hospitals.collect{|f| [f.name, f.id]}	
     end
-    
+
     def user_params
       params.require(:user).permit(:hospital_id, :first_name, :last_name, :email, :password)
     end
