@@ -15,8 +15,7 @@
             <th> ID</th>
             <th> Hospital Name</th>
             <th> Subdomain</th> 
-            <th> Action</th>
-            <th> Babies Record </th>  
+            <th> Action</th> 
           </tr>
         </thead> 
         <tbody>
@@ -27,8 +26,7 @@
               <td><%= hospital.subdomain %></td>        
               <td ><%= link_to '', edit_hospital_path(hospital), class: "btn btn-default glyphicon glyphicon-edit" %>
               <%= link_to '', hospital_path(hospital), class: "btn btn-default glyphicon glyphicon-eye-open" %>
-              <%= link_to '', hospital_path(hospital),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash" %></td>
-              <td><%= link_to "Babies", hospital_healths_path(hospital), class: "btn btn-primary" %></td> 
+              <%= link_to '', hospital_path(hospital),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash" %></td> 
             </tr>
           <% end %>
         </tbody>

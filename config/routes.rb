@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     resources :users do
     	resources :babies
     end
-    resources :healths
   end
+  resources :healths
   resource :admin, only: [:new]
   devise_for :users
 

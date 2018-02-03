@@ -16,9 +16,10 @@
         </div>
         <ul class="nav navbar-nav pull-right ">
           <% if current_user %>
-            <% if current_user.role == "admin" %>
+            <% if current_user.role == "admin" %> 
               <li><%= link_to 'Hospitals', hospitals_path %></li>
               <li><%= link_to 'Managers', managers_path %></li>
+              <li><%= link_to 'Babies Record', healths_path %></li>
             <% elsif current_user.role == "manager"%>     
               <li><%= link_to 'Nurses', hospital_users_path(current_user.hospital) %></li>
             <% else current_user.role == "nurse"%>     
