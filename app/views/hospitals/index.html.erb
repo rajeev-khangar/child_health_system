@@ -1,39 +1,39 @@
 <div class="container">
   <div class="row">
-  <div class="col-md-2  col-md-offset-12 ">
-  <%= link_to "New Hospital", new_hospital_path, class: "btn btn-success" %>
+    <div class="col-md-2  col-md-offset-12 ">
+      <%= link_to "New Hospital", new_hospital_path, class: "btn btn-success" %>
+    </div>
   </div>
-  </div>
-   <div class="container index-container">
-      <h1>Hospital List</h1>
-      <br>
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table table-stripped">
-        <thead>  
-          <tr>
-            <th> ID</th>
-            <th> Hospital Name</th>
-            <th> Subdomain</th> 
-            <th> Action</th> 
-          </tr>
-        </thead> 
-        <tbody>
-          <% @hospitals.each do |hospital| %>
+  <div class="container index-container">
+    <h1>Hospital List</h1>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-stripped">
+          <thead>  
             <tr>
-              <td><%= hospital.id %></td> 
-              <td><%= hospital.name %></td>
-              <td><%= hospital.subdomain %></td>        
-              <td ><%= link_to '', edit_hospital_path(hospital), class: "btn btn-default glyphicon glyphicon-edit" %>
-              <%= link_to '', hospital_path(hospital), class: "btn btn-default glyphicon glyphicon-eye-open" %>
-              <%= link_to '', hospital_path(hospital),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash" %></td> 
+              <th> ID</th>
+              <th> Hospital Name</th>
+              <th> Subdomain</th> 
+              <th> Action</th> 
             </tr>
-          <% end %>
-        </tbody>
-      </table>      
-    </div>    
+          </thead> 
+          <tbody>
+            <% @hospitals.each do |hospital| %>
+              <tr>
+                <td><%= hospital.id %></td> 
+                <td><%= hospital.name %></td>
+                <td><%= hospital.subdomain %></td>        
+                <td ><%= link_to '', edit_hospital_path(hospital), class: "btn btn-default glyphicon glyphicon-edit" %>
+                <%= link_to '', hospital_path(hospital), class: "btn btn-default glyphicon glyphicon-eye-open" %>
+                <%= link_to '', hospital_path(hospital),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash" %></td> 
+              </tr>
+            <% end %>
+          </tbody>
+        </table>      
+      </div>    
+    </div>
   </div>
-</div>
 </div>
 
 

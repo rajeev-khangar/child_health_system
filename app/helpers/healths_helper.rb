@@ -2,10 +2,9 @@ module HealthsHelper
   LABEL =  (0..60).collect {|x| x }
   
   def height_age_chart_data(babies)
-		
-		@data = {
-			labels: LABEL,
-			datasets: [
+    @data = {
+      labels: LABEL,
+        datasets: [
         {
           radius: 0,
           tension: 0.6,
@@ -61,9 +60,9 @@ module HealthsHelper
  end
 
   def weight_age_chart_data(babies)
-		@weight_data = {
-			labels: LABEL,
-			datasets: [
+    @weight_data = {
+      labels: LABEL,
+        datasets: [
         {
           radius: 0,
           tension: 0.6,
@@ -116,7 +115,7 @@ module HealthsHelper
         }
       ]
     }
- end
+  end
 end
       
 

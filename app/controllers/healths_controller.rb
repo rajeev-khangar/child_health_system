@@ -7,6 +7,4 @@ class HealthsController < ApplicationController
     height_age_chart_data(babies)
     weight_age_chart_data(babies)
   end
-
-
 end
