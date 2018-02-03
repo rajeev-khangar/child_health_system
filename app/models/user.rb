@@ -15,11 +15,11 @@ class User < ApplicationRecord
 
 
   def admin?
-  	role.eql?"admin"
+    role.eql?"admin"
   end
 
   def manager?
-  	role.eql?"manager"
+    role.eql?"manager"
   end
 
 end
