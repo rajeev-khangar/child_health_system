@@ -12,22 +12,19 @@ class Baby < ApplicationRecord
   POSSIBLE_OVERWEIGHT     =  [4.2,5.4,6.6,7.6,8.2,8.8,9.4,9.8,10.2,10.6,10.9,11.2,11.4,11.8,12,12.4,12.6,12.9,13.2,13.4,13.8,14,14.2,14.6,14.8,15,15.4,15.6,16,16.2,16.4,16.8,17.2,17.3,17.6,17.8,18,18.4,18.6,19,19.2,19.4,19.8,20,20.2,20.6,20.8,21.1,21.4,21.6,22,22.2,22.4,22.8,23,23.2,23.8,24,24.2,24.4,24.8]
   CHECK_WEIGHT_FOR_HEIGHT =  [4.8,6.2,7.6,8.6,9.4,10,10.7,11,11.6,12,12.2,12.8,13,13.4,13.8,14.2,14.4,14.8,15.2,15.4,15.6,16,16.2,16.6,17,17.2,17.6,18,18.2,18.6,19,19.2,19.6,19.9,20.2,20.4,20.8,21.2,21.4,22,22.2,22.4,22.8,23.2,23.6,24,24.4,24.6,25,25.4,25.8,26,26.4,26.8,27.2,27.4,27.8,28.2,28.6,29,29.2]
 
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
 
   belongs_to :hospital
   belongs_to :user,  optional: true
   belongs_to :mother
   belongs_to :father
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :date_of_birth, presence: true
-  validates :place_of_birth, presence: true
-  validates :physical_address, presence: true
-  validates :mother_id, presence: true
-  validates :father_id, presence: true
-  validates :sex, presence: true
-  validates :weight, presence: true
-  validates :height, presence: true
+  validates_presence_of :first_name, :last_name, :date_of_birth, 
+    :place_of_birth, :physical_address, :mother_id, :father_id,
+    :sex, :weight, :height
+
   before_save :calculate_age
 
 	def self.avg_height(babies)

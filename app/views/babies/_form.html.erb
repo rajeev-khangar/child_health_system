@@ -1,14 +1,4 @@
-<div class="container">
-  <div class="row">
-   <div class="col-md-2 col-md-offset-12">
-      <%= link_to 'Back',  hospital_user_babies_path, class: "pull-left btn btn-info" %>
-    </div>
-  </div>
-</div>
-
-
-
- <%= bootstrap_form_for [@hospital, @user, @baby], local: true do |form| %>
+<%= bootstrap_form_for [@hospital, @user, @baby], local: true do |form| %>
     
   <div class="row">  
     <div class="col-sm-4">
@@ -23,9 +13,11 @@
   </div>
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
       <%= form.file_field  :avatar %>
     </div>
+  </div>
+  <div class="row">  
     <div class="col-md-6">
       <br>
       <%= form.form_group :sex, label: { text: "Gender" }  do %>  

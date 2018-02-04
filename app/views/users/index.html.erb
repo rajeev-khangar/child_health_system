@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2 col-md-offset-11 ">
+    <div class="col-md-2">
       <% name = current_user.manager? ? "Nurse" : "Manager" %>
       <%= link_to "New #{name} Account", new_hospital_user_path, class: "btn btn-success" %>
     </div>
