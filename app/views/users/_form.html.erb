@@ -1,17 +1,16 @@
  <%= bootstrap_form_for [@hospital, @user], local: true do |form| %>
-      <div class="row">  
-        <div class="col-md-6">
-          <%= form.text_field :first_name,  placeholder:"Enter First Name",  icon: "user" %>
-        </div>
-        <div class="col-md-6">
-          <%= form.text_field :last_name, placeholder: "Enter last Name",  icon: "user" %>
-        </div>
-      </div>  
-        <%= form.email_field :email, placeholder: "User email address" %>
-        <%= form.password_field :password, placeholder: "password" %>
-        <%= form.submit "submit", class: "btn btn-info btn-lg" %>
-      <% end  %>                 
+  <div class="row">  
+    <div class="col-md-6">
+      <%= form.text_field :first_name,  placeholder:"Enter First Name",  icon: "user" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.text_field :last_name, placeholder: "Enter last Name",  icon: "user" %>
+    </div>
   </div>  
+  <%= form.email_field :email, placeholder: "User email address" %>
+  <%= form.password_field :password, placeholder: "password" %>
+  <%= form.submit "submit", class: "btn btn-info btn-lg" %>
+<% end  %> 
 
 
 

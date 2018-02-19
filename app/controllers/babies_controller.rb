@@ -1,9 +1,15 @@
 class BabiesController < ApplicationController
-  before_action :set_nurse
+  before_action :set_nurse, if: -> {current_user.nurse?}
   before_action :set_baby, only: [:show, :edit, :update, :destroy]
 
   def index
-    @babies = @user.babies
+    @babies = if current_user.nurse? 
+      @user.babies 
+    elsif current_user.admin?
+      Baby.where(hospital_id: current_user.hospital_ids)
+    else
+      Baby.where(hospital_id: current_user.hospital_id)
+    end  
     authorize @babies
   end
 
@@ -54,11 +60,11 @@ class BabiesController < ApplicationController
     def set_nurse
       @hospital = Hospital.find(params[:hospital_id])
       @user = @hospital.users.find(params[:user_id])
-      @fathers = Father.all.collect{|f| [f.first_name, f.id]}
+      @fathers = Father.all.collect{|f| [f.email, f.id]}
       @mothers = Mother.all.collect{|m| [m.first_name, m.id]}
     end
   
     def baby_params
-      params.require(:baby).permit(:first_name, :middle_name, :last_name, :avatar, :sex, :date_of_birth, :place_of_birth, :health_center, :physical_address, :mother_id, :father_id, :hospital_id, :age, :height, :weight)
+      params.require(:baby).permit(:first_name, :middle_name, :last_name, :avatar, :sex, :date_of_birth, :place_of_birth, :health_center, :physical_address, :mother_id, :father_id, :hospital_id, healths_attributes: [:id, :height, :weight])
     end
 end

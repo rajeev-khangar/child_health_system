@@ -1,30 +1,28 @@
+<div class="pull-right">
+  <%= link_to "Back", managers_path, class: "btn btn-success" %>
+</div>
+
 <div class="container">
-  <div class="row">
-   <div class="col-md-2 col-md-offset-12">
-      <%= link_to "Back", managers_path, class: "btn btn-info" %>
-    </div>
-  </div>
-
-
-<div class="container signup-container">
+  <div class="container signup-container">
+    <div class="col-md-12">
       <h1>Edit Manager Account</h1>
-      <br>
-      byebug
+    </div>  
+    <br>
       <%= bootstrap_form_for @user, url: manager_path, local: true do |form| %>
-      <div class="row">  
-        <div class="col-md-6">
-          <%= form.text_field :first_name,  placeholder:"Enter First Name",  icon: "user" %>
+        <div class="row">  
+          <div class="col-md-6">
+            <%= form.text_field :first_name,  placeholder:"Enter First Name",  icon: "user" %>
+          </div>
+          <div class="col-md-6">
+            <%= form.text_field :last_name, placeholder: "Enter last Name",  icon: "user" %>
+          </div>
         </div>
-        <div class="col-md-6">
-          <%= form.text_field :last_name, placeholder: "Enter last Name",  icon: "user" %>
-        </div>
-      </div>
         <%= form.select :hospital_id, @hospitals, :prompt => 'Select hospital id' %>
         
         <%= form.email_field :email, placeholder: "User email" %>
         <%= form.password_field :password, placeholder: "password" %>
         <%= form.submit "Update Account", class: "btn btn-info btn-lg" %>
       <% end  %>         
-    </div> 
+  </div> 
 </div>      
      

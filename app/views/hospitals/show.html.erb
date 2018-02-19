@@ -1,31 +1,30 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-2 col-md-offset-12">
-      <%= link_to "Hospital List",  hospitals_path, class: "btn btn-success" %>
-    </div>
-  </div>
-  <div class="container table-container">
-    <h1>Details of Particular Hospital</h1>
-    <br>
-    <div class="row">
-      <div class="col-md-6 col-md-offset-2">
-        <table class="table table-bordered">
-          <tbody>
-            <tr>
-              <th>Hospital Id</th>
-              <td><%= @hospital.id %></td>
-            </tr>
-            <tr> 
-              <th>Hospital Name</th>
-              <td><%= @hospital.name %></td>
-            </tr>
-            <tr>
-              <th>subdomain</th>
-              <td><%= @hospital.subdomain %></td>
-            </tr>
-          </tbody>
-        </table>         
-      </div>    
-    </div>
-  </div>
+<div class="pull-right">
+  <%= link_to "Hospital List",  hospitals_path, class: "btn btn-success" %>
 </div>
+<div class="container">
+  <div class="container table-container"> 
+    <div class="col-md-12" >
+      <h1>Details of Particular Hospital</h1>
+    </div>   
+    <br>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th>Hospital Id</th>
+          <td><%= @hospital.id %></td>
+        </tr>
+        <tr> 
+          <th>Hospital Name</th>
+          <td><%= @hospital.name %></td>
+        </tr>
+        <tr>
+          <th>subdomain</th>
+          <td><%= @hospital.subdomain %></td>
+        </tr>
+      </tbody>
+    </table>         
+  </div>    
+</div>
+
+
+ 

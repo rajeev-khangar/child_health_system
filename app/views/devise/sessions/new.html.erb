@@ -1,11 +1,11 @@
 <div class="container loginmodal-container">
-      <h1>Login to Your Account</h1>
-      <br>
-      <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <%= devise_error_messages! %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "User email" %>
-        <%= f.password_field :password, autocomplete: "off", placeholder: "password" %>
-        <%= f.check_box :remember_me %>
-        <%= f.submit "Login", class: "login loginmodal-submit" %>
-      <% end %>     
+  <h1>Login to Your Account</h1>
+  <br>
+  <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "User email" %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: "password" %>
+    <%= f.check_box :remember_me %>
+    <%= f.submit "Login", class: "login loginmodal-submit" %>
+  <% end %>     
 </div>

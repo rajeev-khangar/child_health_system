@@ -35,6 +35,7 @@ gem 'devise'
 gem "pundit"
 gem 'chartjs-ror'
 gem 'bootstrap-glyphicons'
+gem "haml"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

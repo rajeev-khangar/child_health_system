@@ -1,10 +1,8 @@
-<div class="container i-box">
-  <div class="row">
-    <div class="col-md-2 col-md-offset-12">
-      <%= link_to "Hospital List",  hospitals_path, class: "btn btn-success" %>
-    </div>
-  </div>
-  <div class="container loginmodal-container">
+<div class="pull-right ">
+  <%= link_to "Hospital List",  hospitals_path, class: "btn btn-success" %>
+</div>
+  <div class="container">
+    <div class="container loginmodal-container">
     <h1>Edit Hospital Account</h1>
       <%= render 'form' %>
   </div>

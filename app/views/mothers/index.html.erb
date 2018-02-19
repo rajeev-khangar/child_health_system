@@ -1,0 +1,47 @@
+<div class="pull-right">
+    <%= link_to "New manager", new_manager_path, class: "btn btn-success" %>
+</div>
+  <div class="container">
+    <div class="container index-container">
+      <div class="col-md-12">
+        <h1>Mothers List</h1>
+      </div>
+      <br>
+    <div class="col-md-12">
+      <table class="table table-stripped">
+        <thead>  
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Action</th>
+            
+          </tr>
+        </thead> 
+        <tbody>
+          <% @mothers.each do |mother| %>
+            <tr>
+              <td><%= mother.id %></td>
+              <td><%= mother.first_name %></td> 
+              <td><%= mother.last_name %></td>
+              <td><%= mother.email %></td>
+              <td><%= mother.physical_address %></td>      
+              <td ><%= link_to '',  edit_mother_path(mother), class: "btn btn-default glyphicon glyphicon-edit" %>
+              <%= link_to'',  mother_path(mother), class: "btn btn-default glyphicon glyphicon-eye-open" %>
+              <%= link_to '', mother_path(mother),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>      
+    </div>    
+  </div>
+</div>
+
+
+
+
+

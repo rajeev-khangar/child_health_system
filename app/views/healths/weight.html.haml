@@ -1,0 +1,6 @@
+.container
+  %h1 Baby Weight data Chart
+  %br
+  .index-container
+    .col-md-12
+      = chartjs_line_chart(@weight_data,{title: {display:true, position: "bottom", text: "Age in Month"}, scales: {xAxes: [{gridLines: {display:true}}], yAxes: [{scaleLabel: {display: true,labelString: 'Weight in kg'},gridLines: {display:true}, ticks: {beginAtZero:true}}]}, maintainAspectRatio: false, height: 500}) 

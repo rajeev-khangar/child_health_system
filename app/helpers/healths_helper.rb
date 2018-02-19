@@ -1,7 +1,7 @@
 module HealthsHelper
   LABEL =  (0..60).collect {|x| x }
   
-  def height_age_chart_data(babies)
+  def height_age_chart_data(baby)
     @data = {
       labels: LABEL,
         datasets: [
@@ -53,13 +53,13 @@ module HealthsHelper
           label: "Capture Data",
           background_color: "rgba(0,0,0,0.0)",
           border_color: '#000000',
-          data: (0..60).collect{ |age| Baby.avg_height(babies.where(age: age))}
+          data: (0..60).collect{ |age| baby.healths.find_by(age: age).try(:height) ? baby.healths.find_by(age: age).height : 0}
         }
       ]
     }
  end
 
-  def weight_age_chart_data(babies)
+  def weight_age_chart_data(baby)
     @weight_data = {
       labels: LABEL,
         datasets: [
@@ -111,7 +111,7 @@ module HealthsHelper
           label: "Capture Data",
           background_color: "rgba(0,0,0,0.0)",
           border_color: '#000000',
-          data: (0..60).collect{ |age| Baby.avg_weight(babies.where(age: age))}
+          data:  (0..60).collect{ |age| baby.healths.find_by(age: age).try(:weight) ? baby.healths.find_by(age: age).weight : 0}
         }
       ]
     }

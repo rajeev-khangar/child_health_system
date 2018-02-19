@@ -35,11 +35,11 @@ body{
     padding: 40px;
     max-width: 600px;
     width: 100% !important;
-    background-color:   #000000;
+    background-color:   #F7F7F7;
     margin: 0 auto;
     border-radius: 2px;
     font-family: roboto;
-    color: #F7F7F7;
+    color: #000000;
 
 }
 
@@ -59,7 +59,7 @@ body{
 .index-container {
     margin-top: 40px;
     margin-right: 5px; 
-    height: 600px;
+    height: 650px;
     width: 100% !important;
     background-color:  #F0FFF0;
     font-family: roboto;

@@ -1,0 +1,39 @@
+= bootstrap_form_for [@hospital, @user, @baby], local: true do |form|
+  .row
+    .col-sm-4
+      = form.text_field :first_name,  placeholder:"First Name"
+    .col-sm-4
+      = form.text_field :middle_name, placeholder: "middle Name"
+    .col-sm-4
+      = form.text_field :last_name, placeholder: "last Name"
+  .row
+    .col-md-4
+      = form.file_field  :avatar
+    .col-md-6
+      %br/
+      = form.form_group :sex, label: { text: "Gender" }  do
+        = form.radio_button :sex, "male", label: "Male", checked: true, inline: true
+        = form.radio_button :sex, "female", label: "Female", inline: true
+  .row
+    .col-sm-4
+      = form.select :father_id, @fathers, :prompt => 'Choose father id'
+    .col-sm-4
+      = form.select :mother_id, @mothers, :prompt => 'Choose mother id'
+    .col-sm-4
+      = form.date_field :date_of_birth, value: @baby.try(:date_of_birth)
+  - if @baby.new_record?
+    .row
+      = form.fields_for :healths, @baby.healths.new do |health|
+        .col-sm-4
+          = health.text_field :weight,  placeholder: "Enter weight"
+        .col-sm-4
+          = health.text_field :height,  placeholder: "Enter height"
+  .row
+    .col-sm-12
+      = form.text_field :physical_address, placeholder: "Enter Address"
+  .row
+    .col-sm-12
+      = form.text_field :place_of_birth, placeholder: "Enter Place Of birth"
+  .row
+    .col-md-12
+      = form.submit "submit", class: "btn btn-lg btn-success"

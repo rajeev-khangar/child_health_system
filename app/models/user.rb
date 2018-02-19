@@ -22,4 +22,8 @@ class User < ApplicationRecord
     role.eql?"manager"
   end
 
+  def nurse?
+    role.eql?"nurse"
+  end
+
 end

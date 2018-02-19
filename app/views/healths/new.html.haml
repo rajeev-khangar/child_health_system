@@ -1,0 +1,9 @@
+.container
+  .signup-container
+    %h1 Add Health Info
+    %br
+    = bootstrap_form_for @health, url: hospital_user_baby_healths_path(@baby.hospital, @baby.user, @baby),  local: true do |form|
+      = form.text_field :height,  placeholder: "Enter height"
+        
+      = form.text_field :weight,  placeholder: "Enter weight"
+      = form.submit "submit", class: "btn btn-lg btn-success"

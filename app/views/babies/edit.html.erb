@@ -1,12 +1,45 @@
+<div class="pull-right">
+  <%= link_to "Back", hospital_user_babies_path, class: "btn btn-success" %>
+</div>
 <div class="container">
-  <div class="row">
-   <div class="col-md-2 col-md-offset-12">
-     <%= link_to "Back", hospital_user_babies_path, class: "btn btn-success" %>
+  <div class="container babysignup-container">
+    <div class="col-md-12">
+     <h1>Update Baby Account</h1>
+     <br>
+     <%= render partial: "form" %> 
+   </div>
+  </div>  
+</div>
+
+<div class="container">
+  <div class="container signup-container">
+    <div class="col-md-12">
+      <h1>Health Information</h1>
+      <div class="row">
+        <div class="pull-right">
+          <%= link_to "Add Health info", new_hospital_user_baby_health_path(@hospital, @user, @baby), class: "btn btn-info" %>
+        </div> 
+      </div>
+      <br>    
+      <table class="table table-bordered">
+        <thead>  
+          <tr>
+            <th>age</th>
+            <th>Height</th>
+            <th>weight</th>
+          </tr>
+        </thead> 
+        <tbody>
+          <% @baby.healths.each do |info| %>
+            <tr>
+              <td><%= info.age %></td> 
+              <td><%= info.height %></td>
+              <td><%= info.weight %></td> 
+            </tr>
+          <% end %>
+        </tbody>
+      </table> 
     </div>
-  </div>
-<div class="container babysignup-container">
-      <h1>Update Baby Account</h1>
-      <%= render partial: "form" %> 
-    </div>
+  </div>  
 </div>         
 

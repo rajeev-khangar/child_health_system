@@ -1,53 +1,60 @@
+<div class="pull-right">
+  <% if current_user.nurse? %>
+    <%= link_to "New Baby Account", new_hospital_user_baby_path, class: "btn btn-success" %>
+  <% end %>
+</div>
+<div class="pull-left">
+  <% if current_user.nurse? %>
+    <%= link_to "New Father Account", new_father_path, class: "btn btn-success" %>
+  <% end %>
+</div>
+<div class="pull-left">
+  <% if current_user.nurse? %>
+    <%= link_to "New Mother Account", new_mother_path, class: "btn btn-success" %>
+  <% end %>
+</div>
 <div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-11">
-      <%= link_to "New Baby Account", new_hospital_user_baby_path, class: "btn btn-success" %>
-    </div>
-  </div>
-  <br>
-    <div class="container index-container">
-      <h1>Babies List</h1>    
-    <br>
-    <div class="row">
-      <div class="col-md-12">
-        <table class="table table-stripped">
-          <thead>  
+  <div class="index-container">
+    <div class="col-md-12">
+      <h1>Babies List</h1>
+    </div>    
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>  
+          <tr>
+            <th>Name</th>
+            <th>Date Of Birth</th>
+            <th>Place Of Birth</th>
+            <th>Gender</th>
+            <th>Father name</th>
+            <th>Mother name</th>
+            <th>Hospital name</th>
+            <th>Action</th>
+          </tr>
+        </thead> 
+        <tbody>
+          <% @babies.each do |baby| %>
             <tr>
-              <th>Baby Id</th>
-              <th>First Name</th>
-              <th>Date Of Birth</th>
-              <th>Place Of Birth</th>
-              <th>Gender</th>
-              <th>Age</th>
-              <th>Father Id</th>
-              <th>Mother Id</th>
-              <th>Hospital Id</th>
-              <th>Action</th>
-              
+              <td><%= baby.first_name %></td> 
+              <td><%= baby.date_of_birth %></td>
+              <td><%= baby.place_of_birth %></td> 
+              <td><%= baby.sex %></td>
+              <td><%= baby.father.try(:first_name) %></td>
+              <td><%= baby.mother.try(:first_name) %></td>
+              <td><%= baby.hospital.try(:name) %></td>    
+              <td>
+                <% if current_user.nurse? %>
+                  <%= link_to "", edit_hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-default glyphicon glyphicon-edit" %>
+                  <%= link_to "", hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-default glyphicon glyphicon-eye-open" %>
+                  <%= link_to "", hospital_user_baby_path(@hospital, @user, baby), method: :delete,data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash" %>
+                <% end %>
+                <%= link_to "height chart", height_baby_healths_path(baby), class: "btn btn-default" %>
+                <%= link_to "weight chart", weight_baby_healths_path(baby), class: "btn btn-default" %>
+              </td>
             </tr>
-          </thead> 
-          <tbody>
-            <% @babies.each do |baby| %>
-              <tr>
-                <td><%= baby.id %></td> 
-                <td><%= baby.first_name %></td> 
-                <td><%= baby.date_of_birth %></td>
-                <td><%= baby.place_of_birth %></td> 
-                <td><%= baby.sex %></td>
-                <td><%= baby.age %></td>
-                <td><%= baby.father_id %></td>
-                <td><%= baby.mother_id %></td>
-                <td><%= baby.hospital_id %></td>    
-                <td ><%= link_to '',  edit_hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-default glyphicon glyphicon-edit" %>
-                <%= link_to '',  hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-default glyphicon glyphicon-eye-open" %>
-                <%= link_to '', hospital_user_baby_path(@hospital, @user, baby),
-                method: :delete,
-                data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash" %></td>
-              </tr>
             <% end %>
           </tbody>
-        </table>      
-      </div>    
-    </div>
+      </table>      
+    </div>    
   </div>
 </div>

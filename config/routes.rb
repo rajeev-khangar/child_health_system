@@ -4,9 +4,22 @@ Rails.application.routes.draw do
   resources :managers
   resources :hospitals do
     resources :users do
-    	resources :babies
+      resources :babies do
+        resources :healths
+      end
     end
   end
+
+  resources :babies do 
+    resources :healths do
+      collection do
+        get :weight
+        get :height
+      end
+    end
+  end
+  resources :fathers
+  resources :mothers
   resources :healths
   resource :admin, only: [:new]
   devise_for :users
