@@ -16,24 +16,44 @@
         = form.radio_button :sex, "female", label: "Female", inline: true
   .row
     .col-sm-4
-      = form.select :father_id, @fathers, :prompt => 'Choose father id'
-    .col-sm-4
-      = form.select :mother_id, @mothers, :prompt => 'Choose mother id'
-    .col-sm-4
       = form.date_field :date_of_birth, value: @baby.try(:date_of_birth)
-  - if @baby.new_record?
-    .row
+    - if @baby.new_record?
       = form.fields_for :healths, @baby.healths.new do |health|
         .col-sm-4
           = health.text_field :weight,  placeholder: "Enter weight"
         .col-sm-4
           = health.text_field :height,  placeholder: "Enter height"
   .row
-    .col-sm-12
-      = form.text_field :physical_address, placeholder: "Enter Address"
-  .row
-    .col-sm-12
+    .col-sm-6
       = form.text_field :place_of_birth, placeholder: "Enter Place Of birth"
+  %h4 Fillup  Father Information
+  .row
+    = form.fields_for :father, @baby.build_father do |father|
+      .col-sm-6
+        = father.text_field :first_name,  placeholder: "Enter first name"
+      .col-sm-6
+        = father.text_field :last_name,  placeholder: "Enter last name"
+      .col-sm-6
+        = father.email_field :email,  placeholder: "Enter email address"
+      .col-sm-6
+        = father.telephone_field :phone_number,  placeholder: "Enter your phone number"
+  %h4 Fillup  Mother Information
+  .row
+    = form.fields_for :mother, @baby.build_mother do |mother|
+      .col-sm-6
+        = mother.text_field :first_name,  placeholder: "Enter first name"
+      .col-sm-6
+        = mother.text_field :last_name,  placeholder: "Enter last name"
+      .col-sm-6
+        = mother.text_field :physical_address,  placeholder: "Enter your Address"
+      .col-sm-6
+        = mother.telephone_field :phone_number,  placeholder: "Enter your phone number"
+  %h4 Choose Multiple risk factors
+  - if @baby.new_record?
+    .row
+      = form.fields_for :baby_risk_factors, form.object.baby_risk_factors.sort_by(&:risk_factor_id) do |baby_risk_factor|
+        .col-sm-12
+          = baby_risk_factor.check_box :risk_factor_id, {label: "#{baby_risk_factor.object.try(:risk_factor).try(:title)}", checked: !baby_risk_factor.object.new_record?}, baby_risk_factor.object.risk_factor_id
   .row
     .col-md-12
       = form.submit "submit", class: "btn btn-lg btn-success"

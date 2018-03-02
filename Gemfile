@@ -35,6 +35,9 @@ gem 'devise'
 gem "pundit"
 gem 'chartjs-ror'
 gem 'bootstrap-glyphicons'
+gem 'momentjs-rails'
+gem 'bootstrap-daterangepicker-rails'
+gem 'bootstrap3-datetimepicker-rails'
 gem "haml"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

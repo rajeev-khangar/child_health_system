@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+Vaccination.create(age: "Birth/First Contact",title: "BCG", description: "Primary course")
+Vaccination.create(age: "6 weeks", title: "Pentavelent 1, OPV 1,ROTAVIRUS 1", description: "Primary course")
+Vaccination.create(age: "10 weeks", title: "Pentavelent 1, OPV 1,ROTAVIRUS 1", description: "Primary course")
+Vaccination.create(age: "18 months", title: "DTP and OPV", description: "Boosters")
+
+RiskFactor.create(title: "Birth Weight less than 2.5 kgs")
+RiskFactor.create(title: "Fifth child or more")
+RiskFactor.create(title: "Birth Intervals Less than 2 years")
+RiskFactor.create(title: "Multiple Births")
+RiskFactor.create(title: "MTCT")
+RiskFactor.create(title: "Death of any child under 5 in family")
+RiskFactor.create(title: "Single Parents")
+RiskFactor.create(title: "Maternal Death")
+

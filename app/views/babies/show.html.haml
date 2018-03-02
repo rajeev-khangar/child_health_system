@@ -14,8 +14,6 @@
               %th Date Of Birth
               %th Place Of Birth
               %th Gender
-              %th Father Name
-              %th Mother Name
           %tbody
             %tr
               %td= @baby.id
@@ -23,8 +21,6 @@
               %td= @baby.date_of_birth
               %td= @baby.place_of_birth
               %td= @baby.sex
-              %td= @baby.father.try(:first_name)
-              %td= @baby.mother.try(:first_name)
 
 
 

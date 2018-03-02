@@ -1,0 +1,25 @@
+.pull-right
+  = link_to "New Hospital", new_hospital_path, class: "btn btn-success"
+.container
+  .container.index-container
+    .col-md-12
+      %h1 Hospital List
+    %br/
+    .col-md-12
+      %table.table.table-stripped
+        %thead
+          %tr
+            %th ID
+            %th Hospital Name
+            %th Subdomain
+            %th Action
+        %tbody
+          - @hospitals.each do |hospital|
+            %tr
+              %td= hospital.id
+              %td= hospital.name
+              %td= hospital.subdomain
+              %td
+                = link_to '', edit_hospital_path(hospital), class: "btn btn-default glyphicon glyphicon-edit"
+                = link_to '', hospital_path(hospital), class: "btn btn-default glyphicon glyphicon-eye-open"
+                = link_to '', hospital_path(hospital),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash"

@@ -1,0 +1,28 @@
+= form_for baby.vitamin_as.new, url: baby_vitamin_as_path(baby), method: :post , authenticity_token: true, remote: true, id: "vitamin_a_form" do |f|
+  %table.table.table-bordered{:style => "margin-top:50px;"}
+    %thead
+      %tr
+        %th Age in month
+        %th 6-11
+        %th 12-23
+        %th 24-35
+        %th 36-47
+        %th 48-59
+    %tbody
+      %tr
+        %td Vitamin A dose
+        %td
+          = f.check_box :month_duration, {class: "month_duration", checked: baby.vitamin_as.map(&:month_duration).include?('6-11'), disabled: baby.vitamin_as.map(&:month_duration).include?('6-11') || baby.unpermit_vitamin("6", "11")}, "6-11"
+        %td
+          = f.check_box :month_duration, {class: "month_duration", checked: baby.vitamin_as.map(&:month_duration).include?('12-23'), disabled: baby.vitamin_as.map(&:month_duration).include?('12-23') || baby.unpermit_vitamin("12", "23")}, "12-23"
+        %td
+          = f.check_box :month_duration, {class: "month_duration", checked: baby.vitamin_as.map(&:month_duration).include?('24-35'), disabled: baby.vitamin_as.map(&:month_duration).include?('24-35') || baby.unpermit_vitamin("24", "35")}, "24-35"
+        %td
+          = f.check_box :month_duration, {class: "month_duration", checked: baby.vitamin_as.map(&:month_duration).include?('36-47'), disabled: baby.vitamin_as.map(&:month_duration).include?('36-47') || baby.unpermit_vitamin("36", "47")}, "36-47"
+        %td
+          = f.check_box :month_duration, {class: "month_duration", checked: baby.vitamin_as.map(&:month_duration).include?('48-59'), disabled: baby.vitamin_as.map(&:month_duration).include?('48-59') || baby.unpermit_vitamin("48", "59")}, "48-59"
+            
+
+
+:javascript
+  setVitaminA();

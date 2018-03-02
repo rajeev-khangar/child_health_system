@@ -12,24 +12,51 @@ class Baby < ApplicationRecord
   CHECK_WEIGHT_FOR_HEIGHT =  [4.8,6.2,7.6,8.6,9.4,10,10.7,11,11.6,12,12.2,12.8,13,13.4,13.8,14.2,14.4,14.8,15.2,15.4,15.6,16,16.2,16.6,17,17.2,17.6,18,18.2,18.6,19,19.2,19.6,19.9,20.2,20.4,20.8,21.2,21.4,22,22.2,22.4,22.8,23.2,23.6,24,24.4,24.6,25,25.4,25.8,26,26.4,26.8,27.2,27.4,27.8,28.2,28.6,29,29.2]
 
   has_many :healths, inverse_of: :baby
+  has_many :baby_risk_factors, inverse_of: :baby
   belongs_to :hospital
   belongs_to :user,  optional: true
-  belongs_to :mother
-  belongs_to :father
-  
+  has_one :mother
+  has_one :father
+  has_many :baby_vaccinations
+  has_many :vitamin_as
+  has_many :risk_factors, through: :baby_risk_factors
+  has_many :infant_feedings
+  has_many :cares
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :date_of_birth, presence: true
   validates :place_of_birth, presence: true
-  validates :physical_address, presence: true
-  validates :mother_id, presence: true
-  validates :father_id, presence: true
   validates :sex, presence: true
-
+  accepts_nested_attributes_for :cares, allow_destroy: true
+  accepts_nested_attributes_for :infant_feedings, allow_destroy: true
+  accepts_nested_attributes_for :father, allow_destroy: true
+  accepts_nested_attributes_for :mother, allow_destroy: true
   accepts_nested_attributes_for :healths, allow_destroy: true
+  accepts_nested_attributes_for :baby_risk_factors, allow_destroy: true, reject_if: proc { |attributes| attributes['risk_factor_id'].to_i == 0 }
   
   has_attached_file :avatar
   validates_attachment_file_name :avatar, :matches => [/png\Z/, /jpe?g\Z/, /gif\Z/]
+  
+  def unpermit_vitamin(min_age, max_age)
+    age.to_i < min_age.to_i || age.to_i > max_age.to_i
+  end
+
+  def unpermit_age(_age)
+    age.to_i != _age.to_i
+  end
+
+  def permit_age_in_week(min_age, max_age)
+    age_in_week.to_i < min_age.to_i || age_in_week.to_i >= max_age.to_i
+  end
+
+  def age_in_week
+    current_date = Time.new
+    birth_date = Time.parse(date_of_birth)
+    seconds = current_date - birth_date
+    days = seconds/(3600*24)
+    week = days/7
+  end
 
   def full_name
     [first_name, middle_name, last_name].join(" ")

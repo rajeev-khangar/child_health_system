@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205103330) do
+ActiveRecord::Schema.define(version: 20180227135059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,51 @@ ActiveRecord::Schema.define(version: 20180205103330) do
     t.integer "age"
   end
 
+  create_table "baby_risk_factors", force: :cascade do |t|
+    t.integer "baby_id"
+    t.integer "risk_factor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "baby_vaccinations", force: :cascade do |t|
+    t.integer "baby_id"
+    t.integer "vaccination_id"
+    t.string "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cares", force: :cascade do |t|
+    t.integer "baby_id"
+    t.string "arv_supplied"
+    t.string "ctx_supplied"
+    t.string "initial_used"
+    t.string "initial_done"
+    t.string "initial_number"
+    t.string "initial_result"
+    t.string "initial_referred_art"
+    t.string "initial_initiated_art"
+    t.string "repeat_used"
+    t.string "repeat_done"
+    t.string "repeat_number"
+    t.string "repeat_result"
+    t.string "repeat_referred_art"
+    t.string "repeat_initiated_art"
+    t.string "breastfeeding_used"
+    t.string "breastfeeding_done"
+    t.string "breastfeeding_number"
+    t.string "breastfeeding_result"
+    t.string "breastfeeding_referred_art"
+    t.string "breastfeeding_initiated_art"
+    t.string "comments"
+    t.boolean "mother_art"
+    t.boolean "arv_prophylaxis_given_at_birth"
+    t.string "arv_prophylaxis_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "fathers", force: :cascade do |t|
     t.integer "national_id"
     t.string "email"
@@ -53,7 +98,8 @@ ActiveRecord::Schema.define(version: 20180205103330) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
-    t.integer "phone_number"
+    t.integer "baby_id"
+    t.string "phone_number"
   end
 
   create_table "healths", force: :cascade do |t|
@@ -75,6 +121,20 @@ ActiveRecord::Schema.define(version: 20180205103330) do
     t.index ["creator_type", "creator_id"], name: "index_hospitals_on_creator_type_and_creator_id"
   end
 
+  create_table "infant_feedings", force: :cascade do |t|
+    t.integer "baby_id"
+    t.string "breast_milk"
+    t.string "except_breast_milk"
+    t.boolean "breastfeeding_hour_delivery"
+    t.string "duration"
+    t.string "complementary_foods"
+    t.string "breastfeeding_continues"
+    t.string "food_groups_given_day"
+    t.string "no_of_meals_day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "managers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -86,13 +146,20 @@ ActiveRecord::Schema.define(version: 20180205103330) do
     t.string "national_id"
     t.string "email"
     t.string "date_of_birth"
-    t.integer "phone_number"
     t.string "physical_address"
     t.string "avatar_file_name"
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string "id_document"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "baby_id"
+    t.string "phone_number"
+  end
+
+  create_table "risk_factors", force: :cascade do |t|
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -118,6 +185,22 @@ ActiveRecord::Schema.define(version: 20180205103330) do
     t.string "unconfirmed_email"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vaccinations", force: :cascade do |t|
+    t.integer "age"
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vitamin_as", force: :cascade do |t|
+    t.integer "baby_id"
+    t.string "month_duration"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

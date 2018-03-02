@@ -23,6 +23,9 @@
             <li><%= link_to 'Nurses', hospital_users_path(current_user.hospital) %></li>
           <% else current_user.role == "nurse"%>     
             <li><%= link_to 'Baby Account', hospital_user_babies_path(current_user.hospital, current_user) %></li>
+            <li><%= link_to "vaccination",  new_baby_vaccination_path%></li>
+
+            <li><%= link_to 'VitaminA suppliment',  new_baby_vitamin_path %></li>
           <% end %>
           <li><%= link_to 'SignOut',  destroy_user_session_path,{method: :delete} %></li>
         <% else %>

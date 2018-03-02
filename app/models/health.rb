@@ -7,6 +7,7 @@ class Health < ApplicationRecord
   before_save :calculate_age
 
   def calculate_age
+    return if baby.blank?
     borrowed_month = false
 
     current_date = Time.new
@@ -42,5 +43,6 @@ class Health < ApplicationRecord
     end
 
     self.age = (year*12)+ month + (day>20 ? 1 : 0)
+    self.baby.update(age: self.age)
   end
 end

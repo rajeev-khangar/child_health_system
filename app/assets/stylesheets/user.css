@@ -43,6 +43,30 @@ body{
 
 }
 
+.vaccination-container {
+
+    padding: 40px;
+    max-width: 400px;
+    width: 100% !important;
+    background-color:   #F7F7F7;
+    margin: 0 auto;
+    border-radius: 2px;
+    font-family: roboto;
+    color: #000000;
+
+}
+
+.vitamin-container {
+
+    padding: 40px;
+    max-width: 700px;
+    width: 100% !important;
+    background-color:   #F7F7F7;
+    margin: 0 auto;
+    color: #000000;
+
+}
+
 .babysignup-container {
 
     padding: 40px;
@@ -51,17 +75,16 @@ body{
     background-color:   #696969;
     margin: 0 auto;
     border-radius: 2px;
-    font-family: roboto;
     color: #F7F7F7;
 
 }
 
 .index-container {
     margin-top: 40px;
-    margin-right: 5px; 
-    height: 650px;
+    margin-right: 5px;
     width: 100% !important;
-    background-color:  #F0FFF0;
+    height: 100% !important;
+    background-color: #ffffff;
     font-family: roboto;
     color: #000000;
 
@@ -105,4 +128,5 @@ body{
     margin-bottom: 10px;
     position: relative;
 }
+
 

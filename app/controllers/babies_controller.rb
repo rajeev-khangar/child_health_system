@@ -15,6 +15,7 @@ class BabiesController < ApplicationController
 
   def new
     @baby = @user.babies.build
+    RiskFactor.all.each { |risk_factor| @baby.baby_risk_factors.build(risk_factor_id: risk_factor.id) }
     authorize @baby
   end
 
@@ -26,6 +27,7 @@ class BabiesController < ApplicationController
       redirect_to hospital_user_babies_path
     else
       flash[:alert] = @baby.errors.full_messages.join(' ,')
+      initialize_risk_factor
       render 'new'
     end
   end	
@@ -60,11 +62,13 @@ class BabiesController < ApplicationController
     def set_nurse
       @hospital = Hospital.find(params[:hospital_id])
       @user = @hospital.users.find(params[:user_id])
-      @fathers = Father.all.collect{|f| [f.email, f.id]}
-      @mothers = Mother.all.collect{|m| [m.first_name, m.id]}
     end
+
+    def initialize_risk_factor
+      RiskFactor.all.each { |risk_factor| @baby.baby_risk_factors.build(risk_factor_id: risk_factor.id) unless @baby.baby_risk_factors.map(&:risk_factor_id).include?(risk_factor.id)}
+    end 
   
     def baby_params
-      params.require(:baby).permit(:first_name, :middle_name, :last_name, :avatar, :sex, :date_of_birth, :place_of_birth, :health_center, :physical_address, :mother_id, :father_id, :hospital_id, healths_attributes: [:id, :height, :weight])
+      params.require(:baby).permit(:first_name, :middle_name, :last_name, :avatar, :sex, :date_of_birth, :place_of_birth, :health_center, :physical_address, :hospital_id, father_attributes: [:id, :email, :phone_number], mother_attributes: [:id, :first_name, :last_name, :physical_address, :phone_number], healths_attributes: [:id, :height, :weight], baby_risk_factors_attributes: [:id, :baby_id, :risk_factor_id])
     end
 end

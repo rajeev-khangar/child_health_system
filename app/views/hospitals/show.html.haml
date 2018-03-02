@@ -1,0 +1,18 @@
+.pull-right
+  = link_to "Hospital List",  hospitals_path, class: "btn btn-success"
+.container
+  .container.table-container
+    .col-md-12
+      %h1 Details of Particular Hospital
+    %br/
+    %table.table.table-bordered
+      %tbody
+        %tr
+          %th Hospital Id
+          %td= @hospital.id
+        %tr
+          %th Hospital Name
+          %td= @hospital.name
+        %tr
+          %th subdomain
+          %td= @hospital.subdomain
