@@ -1,0 +1,8 @@
+.container
+  .signup-container
+    %h1 Edit Infant Feeding Label
+    %br
+    = bootstrap_form_for  @infant_feeding_label, url: infant_feeding_label_path(@infant_feeding_label),  local: true do |form|
+      = form.text_field :title,  placeholder: "enter risk factor title"
+      = form.select :input_type, ["checkbox", "text"] 
+      = form.submit "Update", class: "btn btn-lg btn-success"

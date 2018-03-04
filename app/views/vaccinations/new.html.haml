@@ -1,0 +1,20 @@
+.container
+  .signup-container
+    %h1 Add New Vaccination
+    %br
+    = bootstrap_form_for  @vaccination, url: vaccinations_path,  local: true do |form|
+      .row
+        .col-md-6
+          = form.text_field :age
+      %br
+      .row  
+        .col-md-10
+          = form.text_field :title,  placeholder: "enter vaccination title"
+      %br 
+      .row
+        .col-md-10 
+          = form.text_field :description,  placeholder: "enter type of course"
+      %br  
+      .row
+        .col-md-12
+          = form.submit "Save", class: "btn btn-primary"

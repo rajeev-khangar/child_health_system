@@ -1,6 +1,9 @@
 .pull-right
   - if current_user.nurse?
-    = link_to "New Baby Account", new_hospital_user_baby_path, class: "btn btn-success"
+    = link_to "New Baby Account", new_hospital_user_baby_path, class: "btn btn-success" 
+.pull-lef
+  - if current_user.admin?
+    = link_to "Set Vaccinations", vaccinations_path, class: "btn btn-success"    
 .container
   .container.index-container
     .col-lg-12
@@ -30,7 +33,7 @@
                       = link_to "", edit_hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-default glyphicon glyphicon-edit"
                       = link_to "", hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-default glyphicon glyphicon-eye-open"
                       = link_to "", hospital_user_baby_path(@hospital, @user, baby), method: :delete,data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash"
-                      = link_to "Infant Feeding", new_baby_infant_feeding_path(baby), class: "btn btn-default"
+                      = link_to "Infant Feeding", new_baby_baby_infant_feeding_path(baby), class: "btn btn-default"
                       = link_to "Care Taker", new_baby_care_path(baby), class: "btn btn-default"
                     = link_to "height chart", height_baby_healths_path(baby), class: "btn btn-default"
                     = link_to "weight chart", weight_baby_healths_path(baby), class: "btn btn-default"

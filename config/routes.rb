@@ -18,12 +18,17 @@ Rails.application.routes.draw do
       end
     end
     resources :vitamin_as, only: [:new, :create]
-    resources :infant_feedings, only: [:new, :create]
+    resources :baby_infant_feedings, only: [:new, :create]
     resources :cares, only: [:new, :create]
   end
   resources :baby_vitamins, only: [:new, :create]
   resources :baby_vaccinations 
   resources :fathers
+  resources :risk_factors
+  resources :vaccinations
+  resources :infant_feeding_labels do
+  resources :infant_feeding_label_answers
+  end
   resources :mothers
   resource :admin, only: [:new]
   devise_for :users

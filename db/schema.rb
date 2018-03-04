@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227135059) do
+ActiveRecord::Schema.define(version: 20180304094047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 20180227135059) do
     t.integer "height"
     t.integer "weight"
     t.integer "age"
+  end
+
+  create_table "baby_infant_feedings", force: :cascade do |t|
+    t.integer "baby_id"
+    t.integer "infant_feeding_label_answer_id"
+    t.integer "infant_feeding_label_id"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "baby_risk_factors", force: :cascade do |t|
@@ -119,6 +128,20 @@ ActiveRecord::Schema.define(version: 20180227135059) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creator_type", "creator_id"], name: "index_hospitals_on_creator_type_and_creator_id"
+  end
+
+  create_table "infant_feeding_label_answers", force: :cascade do |t|
+    t.integer "infant_feeding_label_id"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "infant_feeding_labels", force: :cascade do |t|
+    t.string "title"
+    t.string "input_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "infant_feedings", force: :cascade do |t|

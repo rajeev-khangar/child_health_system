@@ -1,0 +1,8 @@
+.container
+  .signup-container
+    %h1 Add Risk Factor
+    %br
+    = bootstrap_form_for  @risk_factor, url: risk_factors_path,  local: true do |form|
+      = form.text_field :title,  placeholder: "enter risk factor title"
+        
+      = form.submit "submit", class: "btn btn-lg btn-success"

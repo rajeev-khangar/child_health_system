@@ -1,0 +1,28 @@
+.pull-right
+  - if current_user.admin?
+    = link_to "Add vaccination", new_vaccination_path, class: "btn btn-success"    
+.container
+  .container.index-container
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h2 Vaccinations List
+        .ibox-content
+          %table.table.table-bordered
+            %thead
+              %tr
+                %th Age
+                %th Title
+                %th Course Description
+                %th Action
+            %tbody
+              - @vaccinations.each do |vaccination|
+                %tr
+                  %td= vaccination.age
+                  %td= vaccination.title
+                  %td= vaccination.description
+                  %td
+                    = link_to "",  edit_vaccination_path(vaccination), class: "btn btn-default glyphicon glyphicon-edit"
+                    = link_to "", vaccination_path(vaccination), method: :delete,data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash"
+                      
+                 

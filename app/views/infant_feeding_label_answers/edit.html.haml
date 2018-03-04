@@ -1,0 +1,10 @@
+.pull-right
+  = link_to "Infant Feeding Table", infant_feeding_label_infant_feeding_label_answers_path, class: "btn btn-success"    
+.container
+  .signup-container
+    %h1 Edit Infant Feeding Duration
+    %br
+    = bootstrap_form_for  @infant_feeding_label_answer, url: infant_feeding_label_infant_feeding_label_answer_path(@infant_feeding_label),  local: true do |form|
+      = form.text_field :description,  placeholder: "enter risk factor title"
+        
+      = form.submit "Update", class: "btn btn-lg btn-success"

@@ -1,0 +1,22 @@
+.pull-right
+  = link_to "Back", risk_factors_path, class: "btn btn-success"
+.container
+  .signup-container
+    %h1 Edit Vaccination
+    %br
+    = bootstrap_form_for  @vaccination, url: vaccination_path(@vaccination),  local: true do |form|
+      .row
+        .col-md-6
+          = form.text_field :age
+      %br
+      .row  
+        .col-md-10
+          = form.text_field :title,  placeholder: "enter vaccination title"
+      %br 
+      .row
+        .col-md-10 
+          = form.text_field :description,  placeholder: "Enter type of course"
+      %br  
+      .row
+        .col-md-12
+          = form.submit "Update", class: "btn btn-primary"

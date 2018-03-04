@@ -1,0 +1,25 @@
+.pull-right
+  - if current_user.admin?
+    = link_to "Add Infant Feeding", new_infant_feeding_label_path, class: "btn btn-success"    
+.container
+  .container.index-container
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h2 Feeding List
+        .ibox-content
+          %table.table.table-bordered
+            %thead
+              %tr
+                %th Title
+                %th Action
+            %tbody
+              - @infant_feeding_labels.each do |infant_feeding_label|
+                %tr
+                  %td= infant_feeding_label.title
+                  %td
+                    = link_to "",  edit_infant_feeding_label_path(infant_feeding_label), class: "btn btn-default glyphicon glyphicon-edit"
+                    = link_to "", infant_feeding_label_path(infant_feeding_label), method: :delete,data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash"
+                    = link_to "Add duration",infant_feeding_label_infant_feeding_label_answers_path(infant_feeding_label), class: "btn btn-info"
+                      
+                 

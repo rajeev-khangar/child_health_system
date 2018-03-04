@@ -1,0 +1,25 @@
+.container.index-container
+  .col-md-12
+  %h3 INFANT FEEDING
+  %table.table.table-bordered
+    = form_for @baby, url: baby_baby_infant_feedings_path, method: :post,  id: "infant_feeding_form" do |f|
+      - @infant_feeding_labels.each do |infant_feeding_label|
+        .col-md-3
+          = infant_feeding_label.title
+        .col-md-9
+          - if infant_feeding_label.input_type == "checkbox"  
+            - infant_feeding_label.infant_feeding_label_answers.each do |infant_feeding_label_answer|  
+              = f.fields_for :baby_infant_feedings, @baby.baby_infant_feedings.new do |form|  
+                .col-md-2  
+                  = form.text_field :infant_feeding_label_id, {value: infant_feeding_label.id, class: "hide"}
+                  = form.check_box :infant_feeding_label_answer_id, {checked: @baby.baby_infant_feedings.map(&:infant_feeding_label_answer_id).include?(infant_feeding_label_answer.id), disabled: @baby.baby_infant_feedings.map(&:infant_feeding_label_answer_id).include?(infant_feeding_label_answer.id)}, infant_feeding_label_answer.id
+                  = infant_feeding_label_answer.description
+          - else 
+            = f.fields_for :baby_infant_feedings, @baby.baby_infant_feedings.new() do |form|    
+              .col-md-6
+                = form.text_field :infant_feeding_label_id, {value: infant_feeding_label.id, class: "hide"}
+                = form.text_field :description, class: "form-control"
+          .col-md-12
+            %hr
+      .pull-right
+        = f.submit "Save",class: "btn btn-success"

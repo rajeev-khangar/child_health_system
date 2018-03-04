@@ -1,0 +1,24 @@
+.pull-right
+  - if current_user.admin?
+    = link_to "Add Risk factor", new_risk_factor_path, class: "btn btn-success"    
+.container
+  .container.index-container
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h2 RiskFactors Table
+        .ibox-content
+          %table.table.table-bordered
+            %thead
+              %tr
+                %th Title
+                %th Action
+            %tbody
+              - @risk_factors.each do |risk_factor|
+                %tr
+                  %td= risk_factor.title
+                  %td
+                    = link_to "",  edit_risk_factor_path(risk_factor), class: "btn btn-default glyphicon glyphicon-edit"
+                    = link_to "", risk_factor_path(risk_factor), method: :delete,data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash"
+                      
+                 

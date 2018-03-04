@@ -1,0 +1,10 @@
+.pull-right
+  = link_to "Back", risk_factors_path, class: "btn btn-success"
+.container
+  .signup-container
+    %h1 Edit RiskFactors
+    %br
+    = bootstrap_form_for  @risk_factor, url: risk_factor_path(@risk_factor),  local: true do |form|
+      = form.text_field :title,  placeholder: "enter risk factor title"
+        
+      = form.submit "Update", class: "btn btn-lg btn-success"
