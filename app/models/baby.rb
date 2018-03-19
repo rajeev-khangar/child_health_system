@@ -24,16 +24,16 @@ class Baby < ApplicationRecord
   has_many :baby_vaccinations
   has_many :vitamin_as
   has_many :risk_factors, through: :baby_risk_factors
-  has_many :cares
   has_many :baby_infant_feedings
+  has_many :baby_cares
 
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :date_of_birth, presence: true
   validates :place_of_birth, presence: true
   validates :sex, presence: true
-  accepts_nested_attributes_for :baby_infant_feedings, allow_destroy: true, reject_if: proc {|attributes| attributes['infant_feeding_label_answer_id'].to_i == 0}
-  accepts_nested_attributes_for :cares, allow_destroy: true
+  accepts_nested_attributes_for :baby_cares, allow_destroy: true, reject_if: proc {|attributes| (attributes["care_month_id"].present? && attributes["care_month_id"].to_i == 0) || (attributes["description"].present? && attributes["description"] == "") || (attributes["comment"].present? && attributes["comment"] == "")}
+  accepts_nested_attributes_for :baby_infant_feedings, allow_destroy: true, reject_if: proc {|attributes| attributes['infant_feeding_label_id'].to_i == 0 || (attributes["infant_feeding_month_id"].present? && attributes["infant_feeding_month_id"].to_i == 0) || (attributes["description"].present? && attributes["description"] == "")}
   accepts_nested_attributes_for :father, allow_destroy: true
   accepts_nested_attributes_for :mother, allow_destroy: true
   accepts_nested_attributes_for :healths, allow_destroy: true

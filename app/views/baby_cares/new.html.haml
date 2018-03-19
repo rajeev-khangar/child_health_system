@@ -1,0 +1,91 @@
+.container.index-container
+  .col-md-12
+  %h3 CARE FORM
+  = form_for @baby, url: baby_baby_cares_path, method: :post do |f|
+    %table.table.table-stripped   
+      %tbody
+        - @care_labels.only_radio.each do |care_label|
+          %tr  
+            %td= "#{care_label.title}"  
+            = f.fields_for :baby_cares, @baby.baby_cares.new do |form| 
+              %td
+                YES
+                = form.text_field :care_label_id, {value: care_label.id, class: "hide"}
+                = form.radio_button :description, "YES"
+                NO
+                = form.text_field :care_label_id, {value: care_label.id, class: "hide"}
+                = form.radio_button :description, "NO"
+  
+
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th HIV Test
+          - BabyCare::HIV_TEST_TYPE.each do |i|
+            %th= "#{i}"      
+      %tbody
+        - @care_labels.only_text.each do |care_label|
+          %tr  
+            %td= "#{care_label.title}" 
+            = f.fields_for :baby_cares, @baby.baby_cares.new do |form|
+              - BabyCare::HIV_TEST_TYPE.each do |i|  
+                %td
+                  = form.text_field :care_label_id, {value: care_label.id, class: "hide"}
+                  = form.text_field :description, class: "form-control"
+
+
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th Follow up time
+          - @care_months.where("care_months.order <= ?", 12).each do |care_month|
+            %th= "#{care_month.title}"       
+      %tbody
+        - @care_labels.only_checkbox.each do |care_label|
+          - if care_label.min_duration >= 1 && care_label.min_duration <= 12
+            %tr  
+              %td= "#{care_label.title}"
+              - @care_months.where("care_months.order <= ?", 12).each do |care_month|  
+                - if care_month.order <= 12   
+                  = f.fields_for :baby_cares, @baby.baby_cares.new do |form|  
+                    - if care_month.order >= care_label.min_duration &&  care_month.order <= care_label.max_duration
+                      %td
+                        = form.text_field :care_label_id, {value: care_label.id, class: "hide"}
+                        = form.check_box :care_month_id, {checked: @baby.baby_cares.where(care_label_id: care_label.id).map(&:care_month_id).include?(care_month.id), disabled: @baby.baby_cares.where(care_label_id: care_label.id).map(&:care_month_id).include?(care_month.id)}, care_month.id
+                    -else
+                      %td
+    
+
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th Follow up time
+          - @care_months.each do |care_month|
+            - if care_month.order >= 13
+              %th= "#{care_month.title}"       
+      %tbody
+        - @care_labels.only_checkbox.each do |care_label|
+          - if care_label.max_duration >= 13
+            %tr  
+              %td= "#{care_label.title}"
+              - @care_months.each do |care_month|  
+                - if care_month.order >= 13  
+                  = f.fields_for :baby_cares, @baby.baby_cares.new do |form|  
+                    - if care_month.order >= care_label.min_duration &&  care_month.order <= care_label.max_duration
+                      %td
+                        = form.text_field :care_label_id, {value: care_label.id, class: "hide"}
+                        = form.check_box :care_month_id, {checked: @baby.baby_cares.where(care_label_id: care_label.id).map(&:care_month_id).include?(care_month.id), disabled: @baby.baby_cares.where(care_label_id: care_label.id).map(&:care_month_id).include?(care_month.id)}, care_month.id
+                    -else
+                      %td
+    .row
+      = f.fields_for :baby_cares, @baby.baby_cares.new do |form|
+        .col-md-12
+          = form.label :comment, style: "display: block;"
+          = form.text_area :comment
+
+           
+       
+        .col-md-12
+          %hr
+    .pull-right
+      = f.submit "Save",class: "btn btn-success"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180304094047) do
+ActiveRecord::Schema.define(version: 20180316101201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,11 +39,21 @@ ActiveRecord::Schema.define(version: 20180304094047) do
     t.integer "age"
   end
 
+  create_table "baby_cares", force: :cascade do |t|
+    t.integer "baby_id"
+    t.integer "care_label_id"
+    t.string "description"
+    t.string "comment"
+    t.integer "care_month_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "baby_infant_feedings", force: :cascade do |t|
     t.integer "baby_id"
-    t.integer "infant_feeding_label_answer_id"
     t.integer "infant_feeding_label_id"
     t.string "description"
+    t.integer "infant_feeding_month_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -63,32 +73,18 @@ ActiveRecord::Schema.define(version: 20180304094047) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cares", force: :cascade do |t|
-    t.integer "baby_id"
-    t.string "arv_supplied"
-    t.string "ctx_supplied"
-    t.string "initial_used"
-    t.string "initial_done"
-    t.string "initial_number"
-    t.string "initial_result"
-    t.string "initial_referred_art"
-    t.string "initial_initiated_art"
-    t.string "repeat_used"
-    t.string "repeat_done"
-    t.string "repeat_number"
-    t.string "repeat_result"
-    t.string "repeat_referred_art"
-    t.string "repeat_initiated_art"
-    t.string "breastfeeding_used"
-    t.string "breastfeeding_done"
-    t.string "breastfeeding_number"
-    t.string "breastfeeding_result"
-    t.string "breastfeeding_referred_art"
-    t.string "breastfeeding_initiated_art"
-    t.string "comments"
-    t.boolean "mother_art"
-    t.boolean "arv_prophylaxis_given_at_birth"
-    t.string "arv_prophylaxis_name"
+  create_table "care_labels", force: :cascade do |t|
+    t.string "title"
+    t.string "input_type"
+    t.integer "min_duration"
+    t.integer "max_duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "care_months", force: :cascade do |t|
+    t.string "title"
+    t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -130,30 +126,18 @@ ActiveRecord::Schema.define(version: 20180304094047) do
     t.index ["creator_type", "creator_id"], name: "index_hospitals_on_creator_type_and_creator_id"
   end
 
-  create_table "infant_feeding_label_answers", force: :cascade do |t|
-    t.integer "infant_feeding_label_id"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "infant_feeding_labels", force: :cascade do |t|
     t.string "title"
     t.string "input_type"
+    t.integer "min_duration"
+    t.integer "max_duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "infant_feedings", force: :cascade do |t|
-    t.integer "baby_id"
-    t.string "breast_milk"
-    t.string "except_breast_milk"
-    t.boolean "breastfeeding_hour_delivery"
-    t.string "duration"
-    t.string "complementary_foods"
-    t.string "breastfeeding_continues"
-    t.string "food_groups_given_day"
-    t.string "no_of_meals_day"
+  create_table "infant_feeding_months", force: :cascade do |t|
+    t.string "title"
+    t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

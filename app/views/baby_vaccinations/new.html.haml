@@ -12,9 +12,9 @@
             = form.select :vaccination_id, @vaccinations, :prompt => 'Choose vaccinations id'
         %br 
         .row
-          .col-md-12  
+          .col-md-8  
             .datetimepicker.input-group
-              = form.text_field :date,  class: 'form_datetimepicker'
+              = form.text_field :date,  placeholder: "enter vaccination date",  class: 'form_datetimepicker'
         %br  
         .row
           .col-md-12

@@ -1,0 +1,25 @@
+.pull-right
+  - if current_user.admin?
+    = link_to "Add Care", new_care_label_path, class: "btn btn-success"    
+.container
+  .container.index-container
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h2 Care Labels
+        .ibox-content
+          %table.table.table-bordered
+            %thead
+              %tr
+                %th Title
+                %th Action
+            %tbody
+              - @care_labels.each do |care_label|
+                %tr
+                  %td= care_label.title
+                  %td
+                    = link_to "",  edit_care_label_path(care_label), class: "btn btn-default glyphicon glyphicon-edit"
+                    = link_to "", care_label_path(care_label), method: :delete,data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash"
+                    
+                      
+                 

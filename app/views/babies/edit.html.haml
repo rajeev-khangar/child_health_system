@@ -6,8 +6,9 @@
       %h1 Update Baby Account
       %br/
       = render partial: "form"
+      %br
 .container
-  .container.signup-container
+  .container.vitamin-container
     .col-md-12
       %h1 Health Information
       .row
@@ -17,9 +18,9 @@
       %table.table.table-bordered
         %thead
           %tr
-            %th age
-            %th Height
-            %th weight
+            %th age(in month)
+            %th Height(cm)
+            %th weight(cm)
         %tbody
           - @baby.healths.each do |info|
             %tr

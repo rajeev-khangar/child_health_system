@@ -1,10 +1,6 @@
 $(document).on('ready page:load turbolinks:load', function(){
   initializeVitaminForm();
   setVitaminA();
-  submitFeedingForm();
-  submitCareForm();
-  submitFeedingFormBreastMilk();
-  submitCareFormField();
   submitTimeField();
 });
 
@@ -24,29 +20,6 @@ var setVitaminA = function(){
   })
 }
 
-var submitFeedingForm = function(){
-  $(".breast_milk").click(function(){
-    $(this.form).submit();  
-  })
-}
-
-var submitCareForm = function(){
-  $(".breast_milk").click(function(){
-    $(this.form).submit();  
-  })
-}
-
-var submitFeedingFormBreastMilk = function(){
-  $("").on("click keyup", function(){
-    $(this.form).submit();  
-  })
-}
-
-var submitCareFormField = function(){
-  $(".breast_milk").on("click", function(){
-    $(this.form).submit();  
-  })
-}
 
 var submitTimeField = function(){
   $(".datetimepicker" ).datetimepicker({

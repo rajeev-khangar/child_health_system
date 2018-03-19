@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CareTest < ActiveSupport::TestCase
+class CareLabelTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

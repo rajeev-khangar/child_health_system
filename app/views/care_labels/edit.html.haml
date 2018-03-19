@@ -1,0 +1,21 @@
+.pull-right
+  = link_to "Back", care_labels_path, class: "btn btn-success"
+.container
+  .vaccination-container
+    %h1 Edit Care Label
+    %br
+    = bootstrap_form_for  @care_label, url: care_label_path(@care_label),  local: true do |form|
+      .row
+        .col-sm-8
+          = form.text_field :title,  placeholder: "enter infant feeding label"
+      .row
+        .col-sm-8
+          = form.select :input_type, ["checkbox", "text", "radio"]
+      .row
+        .col-sm-4
+          = form.select :min_duration, @months
+        .col-sm-4
+          = form.select :max_duration, @months     
+      
+       
+      = form.submit "Update", class: "btn btn-lg btn-success"

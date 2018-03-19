@@ -1,10 +1,10 @@
-class InfantFeedingLabel < ApplicationRecord
-
-  has_many :baby_infant_feedings, dependent: :destroy
+class CareLabel < ApplicationRecord
+  has_many :baby_cares, dependent: :destroy
   validates :title, presence: true
-  validates :input_type, inclusion: ["text", "checkbox"]
+  validates :input_type, inclusion: ["text", "checkbox", "radio"]
   scope :only_checkbox, -> { where(input_type: "checkbox")}
   scope :only_text, -> { where(input_type: "text")}
+  scope :only_radio, -> { where(input_type: "radio")}
   validate :validate_duration
 
 

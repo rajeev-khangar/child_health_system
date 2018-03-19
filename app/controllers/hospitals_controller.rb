@@ -24,17 +24,21 @@ class HospitalsController < ApplicationController
   def create
     @hospital = current_user.hospitals.new(hospital_params)
     if @hospital.save
+      flash[:success] = "created successfully."
       redirect_to hospitals_path
     else
+      flash[:alert] = @hospital.errors.full_messages.join(' ,')
       render 'new'
     end
   end
 
   def update
     if @hospital.update(hospital_params)
+      flash[:success] = "Update Successfully." 
       redirect_to hospitals_path
     else
-       render 'new'
+      flash[:alert] = @hospital.errors.full_messages.join(' ,')
+      render 'new'
     end
   end
 

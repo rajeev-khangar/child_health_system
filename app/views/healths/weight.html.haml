@@ -1,3 +1,6 @@
+.pull-right
+  - if current_user.admin?
+    = link_to "Back", babies_path, class: "btn btn-success"
 .container
   %h1 Baby Weight data Chart
   %br

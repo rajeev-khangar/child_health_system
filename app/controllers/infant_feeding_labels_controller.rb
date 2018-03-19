@@ -1,5 +1,6 @@
 class InfantFeedingLabelsController < ApplicationController
   before_action :authenticate_user!
+  before_action :initialize_data
   before_action :set_infant_feeding_label, only: [:show, :edit, :update, :destroy]
   
 
@@ -46,12 +47,17 @@ class InfantFeedingLabelsController < ApplicationController
   end
 
   private
+
+    def initialize_data
+      @infant_feeding_months = InfantFeedingMonth.all
+      @months= @infant_feeding_months.collect {|m| [m.title, m.order]}
+    end
     
     def set_infant_feeding_label
       @infant_feeding_label = InfantFeedingLabel.find(params[:id])
     end
 
     def infant_feeding_label_params
-      params.require(:infant_feeding_label).permit(:title, :input_type)
+      params.require(:infant_feeding_label).permit(:title, :input_type, :min_duration, :max_duration)
     end
 end

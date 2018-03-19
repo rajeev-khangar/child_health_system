@@ -9,7 +9,7 @@ class BabyVitaminsController < ApplicationController
   private
   
   def set_babies
-    @babies = Baby.all
+    @babies = current_user.babies.all
     @baby = @babies.first
   end
 end

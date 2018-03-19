@@ -1,8 +1,20 @@
+.pull-right
+  = link_to "Back", infant_feeding_labels_path, class: "btn btn-success"
 .container
-  .signup-container
+  .vaccination-container
     %h1 Edit Infant Feeding Label
     %br
     = bootstrap_form_for  @infant_feeding_label, url: infant_feeding_label_path(@infant_feeding_label),  local: true do |form|
-      = form.text_field :title,  placeholder: "enter risk factor title"
-      = form.select :input_type, ["checkbox", "text"] 
+      .row
+        .col-sm-8
+          = form.text_field :title,  placeholder: "enter infant feeding label"
+      .row
+        .col-sm-8
+          = form.select :input_type, ["checkbox", "text"]  
+      .row  
+        .col-sm-4
+          = form.select :min_duration, @months
+        .col-sm-4
+          = form.select :max_duration,  @months   
+       
       = form.submit "Update", class: "btn btn-lg btn-success"

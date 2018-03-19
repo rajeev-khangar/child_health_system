@@ -7,11 +7,12 @@
     .col-sm-4
       = form.text_field :last_name, placeholder: "last Name"
   .row
-    .col-md-4
+    .col-md-6
       = form.file_field  :avatar
     .col-md-6
       %br/
-      = form.form_group :sex, label: { text: "Gender" }  do
+      = form.form_group :sex do
+        = form.label :gender
         = form.radio_button :sex, "male", label: "Male", checked: true, inline: true
         = form.radio_button :sex, "female", label: "Female", inline: true
   .row
@@ -48,8 +49,8 @@
         = mother.text_field :physical_address,  placeholder: "Enter your Address"
       .col-sm-6
         = mother.telephone_field :phone_number,  placeholder: "Enter your phone number"
-  %h4 Choose Multiple risk factors
   - if @baby.new_record?
+    %h4 Select risk factors(optional)
     .row
       = form.fields_for :baby_risk_factors, form.object.baby_risk_factors.sort_by(&:risk_factor_id) do |baby_risk_factor|
         .col-sm-12

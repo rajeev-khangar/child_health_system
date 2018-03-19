@@ -1,13 +1,15 @@
-class BabyInfantFeedingsController < ApplicationController
+class BabyCaresController < ApplicationController
   before_action :authenticate_user!
   before_action :set_baby, :initialize_data
 
   def new
-    @baby_infant_feeding = @baby.baby_infant_feedings.build
+    @baby_care = @baby.baby_cares.build
+    
+
   end
 
   def create
-    if @baby.update(baby_infant_feeding_params)
+    if @baby.update(baby_care_params)
       flash[:success] = "created successfully."
       redirect_to hospital_user_babies_path(current_user.hospital, current_user)
     else
@@ -19,16 +21,17 @@ class BabyInfantFeedingsController < ApplicationController
   private
 
   def initialize_data
-    @infant_feeding_labels = InfantFeedingLabel.all
-    @infant_feeding_months = InfantFeedingMonth.all
+    @care_labels = CareLabel.all
+    @care_months = CareMonth.all
   end
 
   def set_baby
     @baby = Baby.find(params[:baby_id])
+
   end
 
-  def baby_infant_feeding_params
-    params.require(:baby).permit(baby_infant_feedings_attributes: [:id, :baby_id, :infant_feeding_label_id, :description, :infant_feeding_month_id])
+  def baby_care_params
+    params.require(:baby).permit(baby_cares_attributes: [:id, :baby_id,  :care_label_id, :description, :care_month_id, :comment ])
   end
 end
     
