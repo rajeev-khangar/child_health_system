@@ -16,8 +16,9 @@
         = form.radio_button :sex, "male", label: "Male", checked: true, inline: true
         = form.radio_button :sex, "female", label: "Female", inline: true
   .row
-    .col-sm-4
-      = form.date_field :date_of_birth, value: @baby.try(:date_of_birth)
+    - if @baby.new_record?
+      .col-sm-4
+        = form.date_field :date_of_birth, value: @baby.try(:date_of_birth)
     - if @baby.new_record?
       = form.fields_for :healths, @baby.healths.new do |health|
         .col-sm-4
@@ -30,10 +31,6 @@
   %h4 Fillup  Father Information
   .row
     = form.fields_for :father, @baby.build_father do |father|
-      .col-sm-6
-        = father.text_field :first_name,  placeholder: "Enter first name"
-      .col-sm-6
-        = father.text_field :last_name,  placeholder: "Enter last name"
       .col-sm-6
         = father.email_field :email,  placeholder: "Enter email address"
       .col-sm-6

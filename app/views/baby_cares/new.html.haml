@@ -27,8 +27,8 @@
         - @care_labels.only_text.each do |care_label|
           %tr  
             %td= "#{care_label.title}" 
-            = f.fields_for :baby_cares, @baby.baby_cares.new do |form|
-              - BabyCare::HIV_TEST_TYPE.each do |i|  
+            - BabyCare::HIV_TEST_TYPE.each do |i|
+              = f.fields_for :baby_cares, @baby.baby_cares.new do |form|
                 %td
                   = form.text_field :care_label_id, {value: care_label.id, class: "hide"}
                   = form.text_field :description, class: "form-control"

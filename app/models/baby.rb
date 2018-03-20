@@ -32,8 +32,8 @@ class Baby < ApplicationRecord
   validates :date_of_birth, presence: true
   validates :place_of_birth, presence: true
   validates :sex, presence: true
-  accepts_nested_attributes_for :baby_cares, allow_destroy: true, reject_if: proc {|attributes| (attributes["care_month_id"].present? && attributes["care_month_id"].to_i == 0) || (attributes["description"].present? && attributes["description"] == "") || (attributes["comment"].present? && attributes["comment"] == "")}
-  accepts_nested_attributes_for :baby_infant_feedings, allow_destroy: true, reject_if: proc {|attributes| attributes['infant_feeding_label_id'].to_i == 0 || (attributes["infant_feeding_month_id"].present? && attributes["infant_feeding_month_id"].to_i == 0) || (attributes["description"].present? && attributes["description"] == "")}
+  accepts_nested_attributes_for :baby_cares, allow_destroy: true, reject_if: proc {|attributes| (attributes.has_key?("care_month_id") && attributes["care_month_id"].to_i == 0) || (attributes.has_key?("description") && attributes["description"].blank?) || (attributes.has_key?("comment") && attributes["comment"].blank?)}
+  accepts_nested_attributes_for :baby_infant_feedings, allow_destroy: true, reject_if: proc {|attributes| attributes['infant_feeding_label_id'].to_i == 0 || (attributes.has_key?("infant_feeding_month_id") && attributes["infant_feeding_month_id"].to_i == 0) || (attributes.has_key?("description") && attributes["description"].blank?)}
   accepts_nested_attributes_for :father, allow_destroy: true
   accepts_nested_attributes_for :mother, allow_destroy: true
   accepts_nested_attributes_for :healths, allow_destroy: true

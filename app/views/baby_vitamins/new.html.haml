@@ -2,13 +2,16 @@
   .vitamin-container
     %h1 Vitamin A Suppliment
     %br
-    .row
-      .col-md-4
-        %span Select Baby 
-        %br
-        = select_tag :baby_id, options_from_collection_for_select(@babies, "id", "full_name"), id: "setBaby", class: "form-control" 
-    %br
-    .row
-      .col-md-12
-        #babyVitamin
-          = render partial: "/vitamin_as/baby_vitamin_as", locals: {baby: @baby}
+    - if @baby  
+      .row
+        .col-md-4
+          %span Select Baby 
+          %br
+          = select_tag :baby_id, options_from_collection_for_select(@babies, "id", "full_name"), id: "setBaby", class: "form-control" 
+      %br
+      .row
+        .col-md-12
+          #babyVitamin
+            = render partial: "/vitamin_as/baby_vitamin_as", locals: {baby: @baby}
+    - else 
+      %p You don't have any baby account
