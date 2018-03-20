@@ -16,9 +16,15 @@ RiskFactor.where(title: "Maternal Death").first_or_create
 ["Birth", "6W", "10W", "14W", "5M","6M","7M","8M", "9M","10M","11M","12M","13M","14M","15M","16M","17M","18M","19M","20M","21M","22M","23M","24M"].each_with_index do | title, index|
 
   InfantFeedingMonth.where(title: title ,order: index+1).first_or_create
+  CareMonth.where(title: title , order: index).first_or_create if index > 0
 end
 
-["6W", "10W", "14W", "5M","6M","7M","8M", "9M","10M","11M","12M","13M","14M","15M","16M","17M","18M","19M","20M","21M","22M","23M","24M"].each_with_index do | title, index|
+user = User.where(email: 'kumar.adventure@gmail.com').first_or_initialize
+user.password = 'demouser'
+user.first_name = 'Rajeev'
+user.last_name = 'khangar'
+user.role = 'admin'
+user.skip_confirmation!
+user.save!
 
-  CareMonth.where(title: title ,order: index+1).first_or_create
-end
+puts "Admin Created ----- #{user.attributes}"
