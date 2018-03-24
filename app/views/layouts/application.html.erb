@@ -26,6 +26,7 @@
                 <li><%= link_to 'RiskFactors', risk_factors_path %></li>
                 <li><%= link_to 'InfantFeeding', infant_feeding_labels_path %></li>
                 <li><%= link_to 'Care', care_labels_path %></li>
+                <li><%= link_to 'Import Data', babies_path(format: "csv") %></li>
               </ul>
             </li>
           <% elsif current_user.role == "manager"%>     

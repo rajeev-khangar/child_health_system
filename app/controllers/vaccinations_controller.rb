@@ -1,10 +1,13 @@
 class VaccinationsController < ApplicationController
+  include VaccinationsHelper
   before_action :authenticate_user!
   before_action :set_vaccination, only: [:show, :edit, :update, :destroy]
   
 
   def index
    @vaccinations = Vaccination.all if current_user.admin?
+    vaccination_bar_chart_under23_age_data
+    vaccination_bar_chart_over23_age_data
   end
 
   def new

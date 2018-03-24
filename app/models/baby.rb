@@ -1,3 +1,4 @@
+require 'csv'
 class Baby < ApplicationRecord
 
   SEVERE_STUNTED_HEIGHT   =  [43,48,51,52.5,54.5,57.5,59,60.5,62,63,64,65,66,67,68,69,70,71,72,73,73.5,75,76,76.5,77,77.5,78,78.5,79.5,80,80.5,81,82,82.5,83,83.5,84,84.5,85,85.5,86,86.5,87,87.5,88,88.5,89,89,90,90.5,91,91.5,92,92.5,93,93.5,94,94,94.5,95]
@@ -64,5 +65,22 @@ class Baby < ApplicationRecord
 
   def full_name
     [first_name, middle_name, last_name].join(" ")
+  end
+
+  def import
+    CSV.generate do |csv|
+      csv << ["BabyId", id]
+      csv << ["BabyName", full_name]
+      csv << ["Gender", sex]
+      age_arr = ["age(month)"] 
+      (0..60).each{|age| age_arr << age} 
+      csv << age_arr
+      height_arr = ["Height(cm)"]
+      (0..60).each{|age| height_arr << healths.find_by(age: age).try(:height)}
+      csv << height_arr
+      weight_arr = ["Weight(cm)"]
+      (0..60).each{|age| weight_arr << healths.find_by(age: age).try(:weight)}
+      csv << weight_arr
+    end
   end
 end

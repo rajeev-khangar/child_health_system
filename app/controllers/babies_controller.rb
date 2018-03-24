@@ -9,7 +9,11 @@ class BabiesController < ApplicationController
       Baby.where(hospital_id: current_user.hospital_ids)
     else
       Baby.where(hospital_id: current_user.hospital_id)
-    end  
+    end
+    respond_to do |format|
+      format.html
+      format.csv { send_data current_user.import(@babies), filename: "Baby-#{Date.today}.csv"} 
+    end
     authorize @babies
   end
 
@@ -33,6 +37,10 @@ class BabiesController < ApplicationController
   end	
 
   def show
+    respond_to do |format|
+      format.html
+      format.csv { send_data @baby.import, filename: "Baby-#{Date.today}.csv"} 
+    end
   end
 
   def edit

@@ -32,6 +32,7 @@
                       = link_to "", hospital_user_baby_path(@hospital, @user, baby), method: :delete,data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash"
                       = link_to "Infant Feeding", new_baby_baby_infant_feeding_path(baby), class: "btn btn-default"
                       = link_to "Care Form", new_baby_baby_care_path(baby), class: "btn btn-default"
+                      = link_to "Improt Data",hospital_user_baby_path(@hospital, @user, baby, format: "csv"), class: "btn btn-default"
                   
                     = link_to "height chart", height_baby_healths_path(baby), class: "btn btn-default"
                     = link_to "weight chart", weight_baby_healths_path(baby), class: "btn btn-default"

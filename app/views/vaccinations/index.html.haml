@@ -24,5 +24,23 @@
                   %td
                     = link_to "",  edit_vaccination_path(vaccination), class: "btn btn-default glyphicon glyphicon-edit"
                     = link_to "", vaccination_path(vaccination), method: :delete,data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash"
-                      
+  
+  %h3 Vaccinations graph
+  %br
+  %table{style: "width:100%;"}  
+    %tbody    
+      %tr
+        %td{style: "width:50%;"}
+          %h4 Children Age 0-23 months
+          %br
+            %div{style: "width: 70%;"}
+              = chartjs_bar_chart(@vaccination_data,{scales: {xAxes: [{gridLines: {display:true}}], yAxes: [{scaleLabel: {display: true,labelString: 'Vaccination Count'},gridLines: {display:true}, ticks: {beginAtZero:true}}]}, legend: {display: false}, maintainAspectRatio: false})
+        %td{style: "width:50%;"}
+          %h4 Children Age 24-60 months
+          %br
+            %div{style: "width: 80%;"}
+              = chartjs_bar_chart(@vaccination,{scales: {xAxes: [{gridLines: {display:true}}], yAxes: [{scaleLabel: {display: true,labelString: 'Vaccination Count'},gridLines: {display:true}, ticks: {beginAtZero:true}}]}, legend: {display: false}, maintainAspectRatio: false})       
+
+          
                  
+ 
