@@ -9,7 +9,11 @@ class BabyVitaminsController < ApplicationController
   private
   
   def set_babies
-    @babies = current_user.babies.all
-    @baby = @babies.first
+    if current_user.nurse?
+      @babies = current_user.babies.all
+    else
+      @babies = Baby.where(hospital_id: current_user.hospital_id)
+    end
+    @baby = @babies.first 
   end
 end

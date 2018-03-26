@@ -1,5 +1,5 @@
 .pull-right
-  - if current_user.nurse?
+  - unless current_user.admin?
     = link_to "New Baby Account", new_hospital_user_baby_path, class: "btn btn-success"     
 .container
   .container.index-container
@@ -26,13 +26,14 @@
                   %td= baby.sex
                   %td= baby.hospital.try(:name)
                   %td
-                    - if current_user.nurse?
+                    - if current_user.nurse? || current_user.manager?
                       = link_to "", edit_hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-default glyphicon glyphicon-edit"
                       = link_to "", hospital_user_baby_path(@hospital, @user, baby), class: "btn btn-default glyphicon glyphicon-eye-open"
                       = link_to "", hospital_user_baby_path(@hospital, @user, baby), method: :delete,data: { confirm: 'Are you sure?' }, class: "btn btn-default glyphicon glyphicon-trash"
                       = link_to "Infant Feeding", new_baby_baby_infant_feeding_path(baby), class: "btn btn-default"
                       = link_to "Care Form", new_baby_baby_care_path(baby), class: "btn btn-default"
                       = link_to "Improt Data",hospital_user_baby_path(@hospital, @user, baby, format: "csv"), class: "btn btn-default"
+                      = link_to "Send Email",send_email_hospital_user_baby_path(@hospital, @user, baby), method: :post, remote: true, class: "btn btn-default"
                   
                     = link_to "height chart", height_baby_healths_path(baby), class: "btn btn-default"
                     = link_to "weight chart", weight_baby_healths_path(baby), class: "btn btn-default"

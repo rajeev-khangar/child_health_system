@@ -1,6 +1,5 @@
 $(document).on('ready page:load turbolinks:load', function(){
   initializeVitaminForm();
-  setVitaminA();
   submitTimeField();
 });
 
@@ -14,11 +13,7 @@ var initializeVitaminForm = function(){
   })
 }
 
-var setVitaminA = function(){
-  $(".month_duration").click(function(){
-    $(this.form).submit();
-  })
-}
+
 
 
 var submitTimeField = function(){

@@ -6,7 +6,7 @@ module VaccinationsHelper
       datasets: [
         {
           background_color: ["#a3e1d4", "#B5B8CF", "#a3e1d4", "#B5B8CF"],
-          data:  Vaccination.all.collect{|v| v.babies.where("babies.age >= ? and babies.age <= ?", 0, 23).count}
+          data:  Vaccination.all.collect{|v| v.babies.where(hospital_id: current_user.hospitals.pluck(:id)).where("babies.age >= ? and babies.age <= ?", 0, 23).count}
         }
       ]
     }
@@ -19,7 +19,7 @@ module VaccinationsHelper
       datasets: [
         {
           background_color: ["#a3e1d4", "#B5B8CF", "#a3e1d4", "#B5B8CF"],
-          data:  Vaccination.all.collect{|v| v.babies.where("babies.age >= ? and babies.age <= ?", 24, 60).count}
+          data:  Vaccination.all.collect{|v| v.babies.where(hospital_id: current_user.hospitals.pluck(:id)).where("babies.age >= ? and babies.age <= ?", 24, 60).count}
         }
       ]
     }

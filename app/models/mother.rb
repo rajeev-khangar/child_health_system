@@ -4,5 +4,6 @@ class Mother < ApplicationRecord
   validates :last_name, presence: true
   validates :physical_address, presence: true
   validates :phone_number, presence: true
+  validates :email, presence: true
 
 end

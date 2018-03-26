@@ -1,9 +1,9 @@
 class BabiesController < ApplicationController
-  before_action :set_nurse, if: -> {current_user.nurse?}
-  before_action :set_baby, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, if: -> {current_user.nurse? || current_user.manager?}
+  before_action :set_baby, only: [:show, :edit, :update, :destroy, :send_email]
 
   def index
-    @babies = if current_user.nurse? 
+    @babies = if current_user.nurse?
       @user.babies 
     elsif current_user.admin?
       Baby.where(hospital_id: current_user.hospital_ids)
@@ -12,7 +12,7 @@ class BabiesController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.csv { send_data current_user.import(@babies), filename: "Baby-#{Date.today}.csv"} 
+      format.csv { send_data current_user.import(@babies), filename: "Babies-#{Date.today}.csv"} 
     end
     authorize @babies
   end
@@ -61,13 +61,18 @@ class BabiesController < ApplicationController
     redirect_to  hospital_user_babies_path
   end
 
+  def send_email
+    NotifierMailer.send_email(@baby).deliver_now
+    flash.now[:success] = "Vaccinations details sent on email successfully."
+  end
+
   private
     def set_baby
-      @baby = @user.babies.find(params[:id])
+      @baby = Baby.where(hospital_id: @user.hospital_id).find(params[:id])
       authorize @baby
     end
 
-    def set_nurse
+    def set_user
       @hospital = Hospital.find(params[:hospital_id])
       @user = @hospital.users.find(params[:user_id])
     end
@@ -77,6 +82,6 @@ class BabiesController < ApplicationController
     end 
   
     def baby_params
-      params.require(:baby).permit(:first_name, :middle_name, :last_name, :avatar, :sex, :date_of_birth, :place_of_birth, :health_center, :physical_address, :hospital_id, father_attributes: [:id, :email, :phone_number], mother_attributes: [:id, :first_name, :last_name, :physical_address, :phone_number], healths_attributes: [:id, :height, :weight], baby_risk_factors_attributes: [:id, :baby_id, :risk_factor_id])
+      params.require(:baby).permit(:first_name, :middle_name, :last_name, :avatar, :sex, :date_of_birth, :health_center, :physical_address, :hospital_id, mother_attributes: [:id, :first_name, :last_name, :physical_address, :phone_number, :email], healths_attributes: [:id, :height, :weight], baby_risk_factors_attributes: [:id, :baby_id, :risk_factor_id])
     end
 end

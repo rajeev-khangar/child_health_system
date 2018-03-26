@@ -23,8 +23,12 @@ class BabyVaccinationsController < ApplicationController
   private
 
   def set_vaccination
-    @babies = current_user.babies
-    @baby = @babies.first
+    if current_user.nurse?
+      @babies = current_user.babies
+    else
+      @babies = Baby.where(hospital_id: current_user.hospital_id)
+    end
+    @baby = @babies.first 
     @vaccinations = Vaccination.all.collect{|v| [v.title, v.id]}
   end
 

@@ -5,11 +5,13 @@ Rails.application.routes.draw do
   resources :hospitals do
     resources :users do
       resources :babies do
+        member do
+          post :send_email
+        end
         resources :healths
       end
     end
   end
-
   resources :babies do 
     resources :healths do
       collection do

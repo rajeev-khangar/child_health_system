@@ -9,9 +9,11 @@ class VitaminAsController < ApplicationController
   def create
     @vitamin_a = @baby.vitamin_as.new(vitamin_params)
     if @vitamin_a.save
-      flash.now[:success] = "Vitamin A Suppliment taken sucessfully."
+      flash[:success] = "Vitamin A Suppliment taken sucessfully."
+      redirect_to hospital_user_babies_path(current_user.hospital, current_user)
     else
-      flash.now[:alert] = @vitamin_a.errors.full_messages.join(' ,')
+      flash[:alert] = @vitamin_a.errors.full_messages.join(' ,')
+      render 'new'
     end
     respond_to do |format|
       format.html

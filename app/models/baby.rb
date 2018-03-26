@@ -31,7 +31,6 @@ class Baby < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :date_of_birth, presence: true
-  validates :place_of_birth, presence: true
   validates :sex, presence: true
   accepts_nested_attributes_for :baby_cares, allow_destroy: true, reject_if: proc {|attributes| (attributes.has_key?("care_month_id") && attributes["care_month_id"].to_i == 0) || (attributes.has_key?("description") && attributes["description"].blank?) || (attributes.has_key?("comment") && attributes["comment"].blank?)}
   accepts_nested_attributes_for :baby_infant_feedings, allow_destroy: true, reject_if: proc {|attributes| attributes['infant_feeding_label_id'].to_i == 0 || (attributes.has_key?("infant_feeding_month_id") && attributes["infant_feeding_month_id"].to_i == 0) || (attributes.has_key?("description") && attributes["description"].blank?)}

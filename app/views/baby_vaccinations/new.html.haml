@@ -4,15 +4,19 @@
     %br
       = bootstrap_form_for @baby_vaccination , url: baby_vaccinations_path, local: true do |form|
         .row
-          .col-md-12
-            = form.select :baby_id, @babies.collect{|b| [b.full_name, b.id]}, class: "setBaby"
-        %br
-        .row  
-          .col-md-12
+          .col-md-6
+            = form.select :baby_id, @babies.collect{|b| [b.full_name, b.id]}, class: "setBaby"  
+          .col-md-6
             = form.select :vaccination_id, @vaccinations, :prompt => 'Choose vaccinations id'
         %br 
         .row
-          .col-md-8  
+          .col-md-6
+            = form.text_field :batch_number   
+          .col-md-6
+            = form.select :dose_frequency, BabyVaccination::VACCINATION_DOSE   
+        %br 
+        .row
+          .col-md-6  
             .datetimepicker.input-group
               = form.text_field :date,  placeholder: "enter vaccination date",  class: 'form_datetimepicker'
         %br  
