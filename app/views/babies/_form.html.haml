@@ -39,6 +39,20 @@
         = mother.telephone_field :phone_number,  placeholder: "Enter your phone number"
       .col-sm-6
         = mother.email_field :email,  placeholder: "Enter email address"  
+  %h4 Fillup  Father Information
+  .row
+    = form.fields_for :father, @baby.build_father do |father|
+      .col-sm-6
+        = father.text_field :first_name,  placeholder: "Enter first name"
+      .col-sm-6
+        = father.text_field :last_name,  placeholder: "Enter last name"
+      .col-sm-6
+        = father.text_field :physical_address,  placeholder: "Enter your Address"
+      .col-sm-6
+        = father.telephone_field :phone_number,  placeholder: "Enter your phone number"
+      .col-sm-6
+        = father.email_field :email,  placeholder: "Enter email address" 
+
   - if @baby.new_record?
     %h4 Select risk factors(optional)
     .row

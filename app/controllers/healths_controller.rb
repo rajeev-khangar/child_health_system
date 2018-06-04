@@ -34,6 +34,6 @@ class HealthsController < ApplicationController
     end
 
     def healths_params
-      params.require(:health).permit(:age, :height, :weight)
+      params.require(:health).permit(:age, :height, :weight, :date)
     end
 end
